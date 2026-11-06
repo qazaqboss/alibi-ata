@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Әліби Қойлыбаев</title>
-<meta name="description" content="Сайт-история о жизни Әліби Қойлыбаева (1932–2018), директора совхоза имени Шевченко в Карабутаке.">
+<meta name="description" content="Сайт-история о жизни Әліби Қойлыбаева (1932–2018), директора совхоза имени Шевченко в Карабутаке, автора книги «Бабамнан қалған байтағым».">
 <meta property="og:title" content="Әліби Қойлыбаев (1932–2018)">
 <meta property="og:image" content="img/portrait.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,17 +12,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
 <style>
 :root{
-  --bg:#F4F1E8;
-  --paper:#EAE5D6;
-  --card:#FBF9F3;
-  --ink:#1E2420;
-  --muted:#5E6658;
-  --line:#D3CCB8;
-  --gold:#9A6E16;
-  --gold-2:#C89B3C;
-  --gold-soft:#EEDFB4;
-  --sky:#24506C;
-  --night:#14202A;
+  --bg:#F4F1E8;--paper:#EAE5D6;--card:#FBF9F3;--ink:#1E2420;--muted:#5E6658;--line:#D3CCB8;
+  --gold:#9A6E16;--gold-2:#C89B3C;--gold-soft:#EEDFB4;--sky:#24506C;--night:#14202A;
   --display:"Cormorant Garamond","PT Serif",Georgia,serif;
   --body:"PT Serif",Georgia,"Times New Roman",serif;
   --util:"PT Sans Narrow","Arial Narrow",Arial,sans-serif;
@@ -47,21 +38,23 @@ a{color:var(--sky)}
 .wide{max-width:1100px;margin:0 auto;padding-inline:var(--gut)}
 .label{font-family:var(--util);text-transform:uppercase;letter-spacing:.18em;font-size:13px;color:var(--gold)}
 .sec-title{font-size:clamp(34px,5vw,48px);margin-top:6px}
+.sec-lead{margin-top:14px;color:var(--muted);max-width:40em}
+section.block{padding-block:clamp(64px,9vw,110px) 0}
 
-/* ---------- Nav ---------- */
+/* Nav */
 .nav{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;gap:20px;
   padding:12px var(--gut);transition:background .3s,border-color .3s,color .3s;border-bottom:1px solid transparent;color:#F3EEDD}
 .nav.solid{background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-color:var(--line);color:var(--ink)}
 .nav .brand{font-family:var(--display);font-size:22px;font-weight:700;text-decoration:none;color:inherit;margin-right:auto;white-space:nowrap}
-.nav ul{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
 .nav ul a{font-family:var(--util);font-size:15px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:inherit;opacity:.85}
 .nav ul a:hover{opacity:1;color:var(--gold-2)}
-.theme{background:none;border:1px solid currentColor;color:inherit;border-radius:999px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;opacity:.85}
+.theme{background:none;border:1px solid currentColor;color:inherit;border-radius:999px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;opacity:.85;flex:none}
 .theme:hover{opacity:1}
 .theme svg{width:18px;height:18px}
-@media (max-width:760px){.nav ul{display:none}}
+@media (max-width:960px){.nav ul{display:none}}
 
-/* ---------- Hero ---------- */
+/* Hero */
 .hero{position:relative;min-height:100svh;display:grid;align-items:end;color:#F3EEDD;overflow:hidden;
   background:linear-gradient(180deg,#0E1A24 0%,#1F3A4E 38%,#7C6236 72%,#C79A48 100%)}
 .hero .sky{position:absolute;inset:0;pointer-events:none}
@@ -76,7 +69,7 @@ a{color:var(--sky)}
 .hero svg.land{position:absolute;left:0;right:0;bottom:0;width:100%;height:42%;display:block}
 .hero-in{position:relative;z-index:2;max-width:1100px;width:100%;margin:0 auto;padding:120px var(--gut) clamp(48px,9vh,96px);
   display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:56px;align-items:end}
-.hero .label{color:var(--gold-soft);color:#EBD69E}
+.hero .label{color:#EBD69E}
 .hero h1{font-size:clamp(56px,11vw,128px);letter-spacing:-.015em;margin-top:10px;text-shadow:0 2px 30px rgba(0,0,0,.35)}
 .hero .ru{font-family:var(--display);font-style:italic;font-size:clamp(22px,3vw,32px);opacity:.85;margin-top:8px}
 .hero .years{font-family:var(--display);font-size:clamp(30px,4vw,44px);color:#F1CF7E;margin-top:18px;font-variant-numeric:lining-nums}
@@ -86,12 +79,10 @@ a{color:var(--sky)}
   background:rgba(14,26,36,.35);box-shadow:0 30px 60px -20px rgba(0,0,0,.6),0 0 0 6px rgba(241,207,126,.08)}
 .hero .portrait::after{content:"";position:absolute;inset:10px;border-radius:210px 210px 4px 4px;pointer-events:none;
   box-shadow:inset 0 0 0 1px rgba(241,207,126,.35),inset 0 -80px 60px -40px rgba(14,20,26,.55)}
-.hero .portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:48% 22%;border-radius:210px 210px 4px 4px;
-  filter:saturate(.9) contrast(1.03)}
+.hero .portrait img{display:block;width:100%;height:100%;object-fit:cover;object-position:48% 22%;border-radius:210px 210px 4px 4px;filter:saturate(.9) contrast(1.03)}
 .hero .portrait figcaption{position:absolute;left:50%;bottom:-14px;transform:translateX(-50%);white-space:nowrap;
   font-family:var(--util);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#F1CF7E;
   background:#1d1810;border:1px solid rgba(241,207,126,.5);border-radius:999px;padding:4px 14px}
-@media (prefers-reduced-motion:no-preference){.hero .portrait{animation:rise 1.2s .2s ease-out both}}
 .scroll-cue{position:absolute;z-index:3;left:50%;bottom:18px;transform:translateX(-50%);color:#F3EEDD;opacity:.7;font-family:var(--util);font-size:12px;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;display:grid;justify-items:center;gap:4px}
 .scroll-cue::after{content:"";width:1px;height:28px;background:currentColor}
 @media (max-width:820px){
@@ -99,38 +90,51 @@ a{color:var(--sky)}
   .hero .portrait{width:min(62vw,240px);order:-1;margin-bottom:14px}
 }
 
-/* ---------- Ornament divider ---------- */
+/* Ornament */
 .orn{display:flex;align-items:center;gap:16px;color:var(--gold);margin:0 auto}
 .orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line) 30%,var(--line) 70%,transparent)}
 .orn svg{width:64px;height:32px;flex:none}
 
-/* ---------- Epigraph ---------- */
-.epi{text-align:center;padding-block:clamp(64px,10vw,120px) clamp(40px,6vw,72px)}
+/* Epigraph + stats */
+.epi{text-align:center;padding-block:clamp(64px,10vw,120px) 0}
 .epi q{display:block;font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(36px,6vw,64px);line-height:1.1;quotes:"«" "»";margin-top:28px}
-.epi p{margin:18px auto 28px;color:var(--muted);max-width:30em;font-size:17px}
-
-/* ---------- Stats ---------- */
-.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);margin-block:24px 0}
-.stats div{padding:28px 18px;text-align:center;border-left:1px solid var(--line)}
+.epi p{margin:18px auto 28px;color:var(--muted);max-width:32em;font-size:17px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-block:1px solid var(--line);margin-top:24px}
+.stats div{padding:28px 14px;text-align:center;border-left:1px solid var(--line)}
 .stats div:first-child{border-left:0}
 .stats b{display:block;font-family:var(--display);font-size:clamp(40px,5vw,58px);line-height:1;color:var(--gold);font-weight:600;font-variant-numeric:lining-nums}
 .stats span{display:block;margin-top:8px;font-family:var(--util);font-size:15px;color:var(--muted);line-height:1.3}
 @media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
 
-/* ---------- Story timeline ---------- */
-.story{padding-block:clamp(64px,9vw,110px) 40px}
-.story header{margin-bottom:40px}
-.tl{position:relative;padding-left:0}
-.tl::before{content:"";position:absolute;left:118px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--line) 12%,var(--line) 88%,var(--gold))}
-.ch{position:relative;display:grid;grid-template-columns:100px minmax(0,1fr);gap:44px;padding-block:22px 34px}
-.ch::before{content:"";position:absolute;left:111px;top:32px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);transition:background .4s}
+/* Roots / family tree */
+.tree{margin-top:36px;display:grid;justify-items:center;gap:0}
+.gen{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative}
+.gen + .gen{margin-top:34px}
+.gen + .gen::before{content:"";position:absolute;top:-34px;left:50%;width:1px;height:34px;background:var(--gold)}
+.person{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px 16px;text-align:center;min-width:150px;max-width:260px}
+.person b{display:block;font-family:var(--display);font-size:22px;line-height:1.15}
+.person span{display:block;font-family:var(--util);font-size:14px;color:var(--muted);line-height:1.35;margin-top:2px}
+.person.me{border-color:var(--gold);background:linear-gradient(180deg,var(--gold-soft),var(--card));box-shadow:0 10px 30px -18px rgba(120,80,10,.55)}
+.person.me b{font-size:26px}
+.gen.kids .person{min-width:130px}
+.roots-text{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:40px}
+.roots-text .card{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 24px}
+.roots-text h3{font-size:26px;margin-bottom:8px}
+.roots-text p + p{margin-top:10px}
+
+/* Story timeline */
+.tl{position:relative;margin-top:40px}
+.tl::before{content:"";position:absolute;left:118px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--gold),var(--line) 8%,var(--line) 92%,var(--gold))}
+.ch{position:relative;display:grid;grid-template-columns:100px minmax(0,1fr);gap:44px;padding-block:18px 28px}
+.ch::before{content:"";position:absolute;left:111px;top:28px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--gold);transition:background .4s}
 .ch.in::before{background:var(--gold)}
-.ch .yr{text-align:right;font-family:var(--display);font-size:34px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums;padding-top:20px}
+.ch .yr{text-align:right;font-family:var(--display);font-size:34px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums;padding-top:16px}
 .ch .yr small{display:block;font-family:var(--util);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.3}
-.ch .body{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:24px 26px;display:grid;gap:14px;min-width:0;
+.ch .body{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px 26px;display:grid;gap:12px;min-width:0;
   box-shadow:0 1px 0 rgba(0,0,0,.02),0 10px 30px -18px rgba(40,30,10,.25)}
-.ch h3{font-size:clamp(26px,3.4vw,34px)}
+.ch h3{font-size:clamp(25px,3.2vw,32px)}
 .ch.key .body{border-color:color-mix(in srgb,var(--gold) 45%,var(--line));background:linear-gradient(180deg,color-mix(in srgb,var(--gold-soft) 35%,var(--card)),var(--card) 60%)}
+.ch blockquote{margin:2px 0 0;padding:4px 0 4px 16px;border-left:2px solid var(--gold);font-style:italic;color:var(--muted)}
 .fact{display:flex;gap:22px;flex-wrap:wrap;margin-top:4px}
 .fact div{border-left:2px solid var(--gold);padding-left:12px}
 .fact b{font-family:var(--display);font-size:32px;display:block;line-height:1;font-variant-numeric:lining-nums}
@@ -138,60 +142,124 @@ a{color:var(--sky)}
 @media (max-width:700px){
   body{font-size:17px}
   .tl::before{left:7px}
-  .ch{grid-template-columns:1fr;gap:8px;padding-left:34px;padding-block:14px 22px}
-  .ch::before{left:0;top:20px}
-  .ch .yr{text-align:left;padding-top:12px;font-size:30px}
+  .ch{grid-template-columns:1fr;gap:8px;padding-left:34px;padding-block:12px 20px}
+  .ch::before{left:0;top:18px}
+  .ch .yr{text-align:left;padding-top:10px;font-size:30px}
   .ch .yr small{display:inline;margin-left:10px}
   .ch .body{padding:20px}
 }
 
-/* ---------- Photo slot ---------- */
+/* Photo slot */
 .photo{position:relative;margin:4px 0 0;aspect-ratio:4/3;border:1px solid var(--line);border-radius:4px;display:flex;align-items:flex-end;padding:12px;
   background:var(--paper) repeating-linear-gradient(135deg,transparent 0 11px,color-mix(in srgb,var(--line) 50%,transparent) 11px 12px)}
 .photo figcaption{font-family:var(--util);font-size:14px;color:var(--muted);line-height:1.35;background:var(--card);padding:6px 10px;border:1px solid var(--line);border-radius:3px}
 .photo figcaption b{display:block;color:var(--ink)}
 
-/* ---------- Career band ---------- */
-.band{background:var(--night);color:#ECE6D4;padding-block:clamp(64px,8vw,96px);position:relative;overflow:hidden}
+/* Before/after */
+.grow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:4px}
+.grow div{background:var(--bg);border:1px solid var(--line);border-radius:4px;padding:12px}
+.grow span{display:block;font-family:var(--util);font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.grow b{display:block;font-family:var(--display);font-size:26px;line-height:1.1;font-variant-numeric:lining-nums}
+.grow i{font-style:normal;color:var(--muted);font-size:18px}
+@media (max-width:560px){.grow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* Amanat (words to descendants) */
+.amanat{margin-top:clamp(64px,9vw,110px);background:var(--night);color:#ECE6D4;padding-block:clamp(64px,8vw,104px);position:relative;overflow:hidden}
+.amanat::before,.band::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 10c-8 0-12 8-8 14s12 4 12-2-8-6-8-1M40 70c8 0 12-8 8-14s-12-4-12 2 8 6 8 1M10 40c0 8 8 12 14 8s4-12-2-12-6 8-1 8M70 40c0-8-8-12-14-8s-4 12 2 12 6-8 1-8' fill='none' stroke='%23E6C473' stroke-width='2'/%3E%3C/svg%3E")}
+.amanat .wide{position:relative}
+.amanat .label{color:#E6C473}
+.amanat .sec-lead{color:#B9B5A6}
+.amanat .main-q{margin:40px 0 0;font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(28px,4.2vw,46px);line-height:1.18;max-width:24em;color:#F3EBD2}
+.amanat .main-q::before{content:"«";color:#E6C473}
+.amanat .main-q::after{content:"»";color:#E6C473}
+.amanat .who{margin-top:14px;font-family:var(--util);font-size:15px;color:#A9A596}
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-top:44px}
+.quotes figure{margin:0;border:1px solid rgba(230,196,115,.25);border-radius:6px;padding:22px 24px;background:rgba(255,255,255,.025)}
+.quotes blockquote{margin:0;font-size:17px;line-height:1.6;color:#E6E0CE}
+.quotes figcaption{margin-top:12px;font-family:var(--util);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#E6C473}
+
+/* History of the land */
+.era{margin-top:40px}
+.era h3{font-family:var(--util);font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:700;display:flex;align-items:center;gap:12px}
+.era h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.ev{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:14px;margin-top:16px}
+.ev article{background:var(--card);border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:4px;padding:16px 18px}
+.ev .d{font-family:var(--display);font-size:28px;line-height:1;color:var(--gold);font-variant-numeric:lining-nums}
+.ev h4{margin:8px 0 6px;font-family:var(--display);font-size:21px;line-height:1.15;font-weight:600}
+.ev p{font-size:16px;line-height:1.55;color:var(--muted)}
+.ev article.fam{border-top-color:var(--sky)}
+.ev article.fam .d{color:var(--sky)}
+.legend2{display:flex;gap:18px;flex-wrap:wrap;margin-top:16px;font-family:var(--util);font-size:14px;color:var(--muted)}
+.legend2 span::before{content:"";display:inline-block;width:14px;height:3px;margin-right:7px;vertical-align:middle;background:var(--c)}
+
+/* Career band */
+.band{background:var(--night);color:#ECE6D4;padding-block:clamp(64px,8vw,96px);position:relative;overflow:hidden;margin-top:clamp(64px,9vw,110px)}
 .band .label{color:#E6C473}
-.band::before{content:"";position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cpath d='M40 10c-8 0-12 8-8 14s12 4 12-2-8-6-8-1M40 70c8 0 12-8 8-14s-12-4-12 2 8 6 8 1M10 40c0 8 8 12 14 8s4-12-2-12-6 8-1 8M70 40c0-8-8-12-14-8s-4 12 2 12 6-8 1-8' fill='none' stroke='%23E6C473' stroke-width='2'/%3E%3C/svg%3E")}
 .band .wide{position:relative}
 .band p.sub{color:#B9B5A6;margin-top:10px;max-width:40em}
 .track-scroll{overflow-x:auto;margin-top:36px;padding-bottom:8px;-webkit-overflow-scrolling:touch}
-.track{min-width:880px;position:relative;height:190px}
-.track .axis{position:absolute;left:0;right:0;top:92px;height:2px;background:rgba(236,230,212,.18)}
-.track .seg{position:absolute;top:83px;height:20px;border-radius:3px;transform-origin:left;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
+.track{min-width:960px;position:relative;height:222px}
+.track .axis{position:absolute;left:0;right:0;top:96px;height:2px;background:rgba(236,230,212,.18)}
+.track .seg{position:absolute;top:87px;height:20px;border-radius:3px;transform-origin:left;transform:scaleX(0);transition:transform 1.1s cubic-bezier(.2,.7,.2,1)}
 .band.in .track .seg{transform:scaleX(1)}
 .seg.vet{background:#6FA3C4}.seg.adm{background:#8C9184}.seg.dir{background:#E0B351}.seg.les{background:#7FB08A}
-.track .t{position:absolute;font-family:var(--util);font-size:14px;line-height:1.3;width:140px;padding-left:10px;border-left:1px solid rgba(236,230,212,.3)}
-.track .t.up{bottom:112px}.track .t.dn{top:112px}
+.track .t{position:absolute;font-family:var(--util);font-size:14px;line-height:1.3;width:130px;padding-left:10px;border-left:1px solid rgba(236,230,212,.3)}
+.track .t.up{bottom:142px}.track .t.dn{top:116px}
 .track .t i{display:block;font-style:normal;color:#A9A596}
-.track .tick{position:absolute;top:170px;font-family:var(--util);font-size:12px;color:#8E8B7F;transform:translateX(-50%)}
+.track .tick{position:absolute;top:202px;font-family:var(--util);font-size:12px;color:#8E8B7F;transform:translateX(-50%)}
 .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:18px;font-family:var(--util);font-size:14px;color:#B9B5A6}
 .legend span::before{content:"";display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:7px;vertical-align:middle;background:var(--c)}
 
-/* ---------- Awards ---------- */
-.awards-sec{padding-block:clamp(64px,9vw,110px) 0}
-.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-top:32px}
+/* Awards */
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:32px}
 .aw{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:22px;display:grid;grid-template-columns:56px 1fr;gap:4px 16px;align-items:center;transition:transform .25s,box-shadow .25s}
 .aw:hover{transform:translateY(-3px);box-shadow:0 14px 30px -20px rgba(40,30,10,.45)}
 .aw .m{grid-row:span 2;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-family:var(--display);font-size:28px;font-weight:700;color:#3A2A08;
   background:radial-gradient(circle at 35% 30%,#F8E3A6,#D4A43F 55%,#9A6E16);box-shadow:inset 0 0 0 3px rgba(255,255,255,.35),0 2px 6px rgba(0,0,0,.2)}
 .aw .w{font-family:var(--display);font-size:22px;line-height:1.15;font-weight:600}
 .aw .d{font-family:var(--util);font-size:14px;color:var(--muted)}
+.aw-note{margin-top:18px;color:var(--muted);font-size:16px;max-width:44em}
 
-/* ---------- Gallery ---------- */
-.gallery-sec{padding-block:clamp(64px,9vw,110px) 0}
+/* Book */
+.book{display:grid;grid-template-columns:260px minmax(0,1fr);gap:48px;align-items:start;margin-top:36px}
+.cover{aspect-ratio:3/4.3;border-radius:4px 10px 10px 4px;padding:28px 22px;display:flex;flex-direction:column;justify-content:space-between;color:#F1E3B8;
+  background:linear-gradient(90deg,rgba(0,0,0,.35) 0 10px,transparent 10px 14px),linear-gradient(160deg,#2B4A39,#16271F);box-shadow:0 30px 50px -25px rgba(0,0,0,.6),inset 0 0 0 1px rgba(241,207,126,.3)}
+.cover .a{font-family:var(--util);letter-spacing:.16em;text-transform:uppercase;font-size:13px;opacity:.85}
+.cover .t{font-family:var(--display);font-size:32px;line-height:1.05;font-weight:700}
+.cover .o{color:#E6C473;text-align:center}
+.cover .o svg{width:70px;height:34px}
+.editions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+.editions div{border:1px solid var(--line);border-radius:4px;padding:14px;background:var(--card)}
+.editions b{display:block;font-family:var(--display);font-size:30px;line-height:1;color:var(--gold)}
+.editions span{display:block;font-family:var(--util);font-size:14px;color:var(--muted);margin-top:6px;line-height:1.35}
+.toc{margin-top:22px;columns:2;column-gap:28px;font-size:16px;padding-left:18px;color:var(--muted)}
+.toc li{break-inside:avoid;margin-bottom:4px}
+.book-text p + p{margin-top:12px}
+@media (max-width:760px){.book{grid-template-columns:1fr}.cover{width:min(70vw,240px)}.toc{columns:1}.editions{grid-template-columns:1fr}}
+
+/* Press */
+.press{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px;margin-top:32px}
+.clip{margin:0;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:12px;cursor:zoom-in;transition:transform .25s,box-shadow .25s}
+.clip:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 16px 34px -20px rgba(40,30,10,.5)}
+.clip img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top;border-radius:2px;background:var(--paper)}
+.clip figcaption{margin-top:10px;font-family:var(--util);font-size:15px;line-height:1.35;color:var(--muted)}
+.clip figcaption b{display:block;color:var(--ink);font-family:var(--display);font-size:20px;font-weight:600}
+.lb{position:fixed;inset:0;z-index:50;background:rgba(8,10,12,.9);display:none;place-items:center;padding:20px;cursor:zoom-out}
+.lb.open{display:grid}
+.lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:2px}
+.lb button{position:absolute;top:14px;right:14px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(0,0,0,.4);color:#fff;font-size:22px;cursor:pointer}
+
+/* Gallery */
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:32px}
 .gallery .photo{aspect-ratio:4/5}
 .note{margin-top:22px;font-family:var(--util);font-size:15px;color:var(--muted);border:1px dashed var(--line);border-radius:4px;padding:12px 14px}
 
-/* ---------- Footer ---------- */
+/* Footer */
 footer{margin-top:clamp(72px,10vw,120px);background:var(--paper);border-top:1px solid var(--line);padding-block:48px 64px;font-size:15px;color:var(--muted)}
 footer ol{padding-left:20px;margin:12px 0 0;display:grid;gap:8px}
 footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-style:italic;font-size:22px;color:var(--ink)}
 
-/* ---------- Reveal ---------- */
+/* Reveal */
 .js .rv{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
@@ -203,6 +271,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   .hero h1{animation:rise 1.1s ease-out both}
   .hero .ru,.hero .years{animation:rise 1.1s .15s ease-out both}
   .hero .lead{animation:rise 1.1s .3s ease-out both}
+  .hero .portrait{animation:rise 1.2s .2s ease-out both}
   @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 }
 </style>
@@ -213,11 +282,13 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
 <nav class="nav" id="nav" aria-label="Разделы">
   <a class="brand" href="#top">Әліби-ата</a>
   <ul>
+    <li><a href="#roots">Корни</a></li>
     <li><a href="#story">Жизнь</a></li>
-    <li><a href="#career">Путь</a></li>
+    <li><a href="#amanat">Аманат</a></li>
+    <li><a href="#history">История края</a></li>
     <li><a href="#awards">Награды</a></li>
-    <li><a href="#gallery">Фото</a></li>
-    <li><a href="#sources">Источники</a></li>
+    <li><a href="#book">Книга</a></li>
+    <li><a href="#press">Пресса</a></li>
   </ul>
   <button class="theme" id="theme" type="button" aria-label="Сменить тему">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
@@ -234,11 +305,11 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   </svg>
   <div class="hero-in">
     <div>
-      <p class="label">Ақтөбе облысы · Қарабұтақ</p>
+      <p class="label">Ырғыз · Шабаған · Қарабұтақ</p>
       <h1>Әліби<br>Қойлыбаев</h1>
       <p class="ru">Алиби Койлыбаевич Койлыбаев</p>
       <p class="years">1932<span>—</span>2018</p>
-      <p class="lead">Ветеринарный врач, который стал одним из самых известных хозяйственников Актюбинской области. Больше четверти века он руководил совхозом имени Шевченко в Карабутаке, дважды получил орден Ленина и оставил после себя книгу о родной земле.</p>
+      <p class="lead">Сын просовода из аула Шабаган, ветеринарный врач, директор совхоза имени Шевченко, депутат Верховного Совета Казахской ССР. Сорок три года отдал Карабутаку, а на склоне лет написал книгу о родном крае, чтобы потомки знали, на какой земле живут.</p>
     </div>
     <figure class="portrait">
       <img src="img/portrait.jpg" alt="Портрет Әліби Қойлыбаева: в тёмном костюме и полосатом галстуке, за рабочим столом" width="1024" height="761" fetchpriority="high">
@@ -251,16 +322,64 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
 <section class="wrap epi rv" id="epi">
   <div class="orn" aria-hidden="true"><svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M32 4c-6 0-9 6-6 10s9 3 9-1-6-4-6 0M32 28c6 0 9-6 6-10s-9-3-9 1 6 4 6 0M4 16h16M44 16h16"/><circle cx="32" cy="16" r="2" fill="currentColor"/></svg></div>
   <q>Бабамнан қалған байтағым</q>
-  <p>«Простор, оставленный мне дедами». Так он назвал свою книгу 2003 года об истории края, где прошла его жизнь.</p>
+  <p>«Родная земля, оставшаяся мне от предков». Так он назвал свою книгу о Карабутаке и Иргизском крае. Она вышла трижды: в 2003, 2007 и 2012 годах.</p>
   <div class="stats">
-    <div><b>26</b><span>лет во главе<br>совхозов района</span></div>
+    <div><b>43</b><span>года жизни<br>в Карабутаке</span></div>
     <div><b>2</b><span>ордена<br>Ленина</span></div>
     <div><b>36</b><span>лет депутатом<br>Советов</span></div>
-    <div><b>600+</b><span>деревьев в парке<br>его имени</span></div>
+    <div><b>3</b><span>издания книги<br>о родном крае</span></div>
   </div>
 </section>
 
-<section class="wrap story" id="story">
+<!-- ============ ROOTS ============ -->
+<section class="wide block" id="roots">
+  <div class="rv">
+    <p class="label">Шежіре</p>
+    <h2 class="sec-title">Корни</h2>
+    <p class="sec-lead">Род Әліби-ата веками жил на берегах Иргиза, в Шабагане, где лежат священные кладбища предков. Так о своей семье рассказывает он сам.</p>
+  </div>
+
+  <div class="tree rv" aria-label="Родословная">
+    <div class="gen">
+      <div class="person"><b>Отар</b><span>дед, аульный старшина (ауылнай) в царское время</span></div>
+      <div class="person"><b>Курен</b><span>бабушка, внучка знаменитого Талтекем Сапак би</span></div>
+    </div>
+    <div class="gen">
+      <div class="person"><b>Койлыбай Белесов</b><span>1885–1972 · отец, знатный просовод, депутат областного Совета</span></div>
+    </div>
+    <div class="gen">
+      <div class="person"><b>Кали</b><span>1926 · старший брат</span></div>
+      <div class="person"><b>Агытай</b><span>1928</span></div>
+      <div class="person me"><b>Әліби</b><span>1932–2018</span></div>
+      <div class="person"><b>Табилбай · Байжакаш · Лайык</b><span>младшие братья</span></div>
+      <div class="person"><b>Инжу · Гулжахан</b><span>сёстры</span></div>
+    </div>
+    <div class="gen kids">
+      <div class="person"><b>Гульшара</b><span>филолог, Актюбинский пединститут</span></div>
+      <div class="person"><b>Гульмира</b><span>врач</span></div>
+      <div class="person"><b>Аскар</b><span>агроном</span></div>
+      <div class="person"><b>Кайрат</b><span>экономист, меценат</span></div>
+      <div class="person"><b>Райса</b><span>химик</span></div>
+      <div class="person"><b>Тимур</b><span>внук, выросший сыном</span></div>
+    </div>
+  </div>
+
+  <div class="roots-text">
+    <div class="card rv">
+      <h3>Отец — кормилец голодных лет</h3>
+      <p>Койлыбай Белесов родился в 1885 году в Шабагане. В войну, когда в ауле остались старики, женщины и дети, он уже в немолодые годы поддержал почин Шыганака Берсиева и одним из первых в Иргизском районе создал звено просоводов. Поля поливали чигирём, колесо крутили и днём и ночью.</p>
+      <p>В 1943 году звено собрало по 125 центнеров проса с гектара. В 1947 году на поле приезжал Алиби Джангельдин: брошенная им кепка удержалась на колосьях. Койлыбай-ата был избран депутатом областного Совета, его имя вошло в «Казахскую советскую энциклопедию».</p>
+    </div>
+    <div class="card rv">
+      <h3>Семья</h3>
+      <p>Жена Әліби-ата — Зоя (Зубайда) Торебаевна. В 2012 году он писал: «Мы с Зоей уже 55 лет живём вместе счастливой жизнью… За те тридцать лет, что я работал в совхозе, Зоя ни разу не переступила порога ни совхозной конторы, ни совхозных складов».</p>
+      <p>Они вырастили трёх дочерей и двух сыновей. Внук Тимур по казахскому обычаю рос у деда с бабушкой как их сын. Все дети получили высшее образование, а Кайрат построил в Карабутаке парк имени отца.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STORY ============ -->
+<section class="wrap block" id="story">
   <header class="rv">
     <p class="label">Жизнеописание</p>
     <h2 class="sec-title">Одна жизнь, одна земля</h2>
@@ -270,16 +389,35 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <article class="ch rv">
       <div class="yr">1932<small>Шабаған</small></div>
       <div class="body">
-        <h3>Детство в Иргизской степи</h3>
-        <p>Әліби родился в ауле Шабаган Иргизского района. Его детство пришлось на трудные тридцатые и военные сороковые годы.</p>
+        <h3>Рождение на берегу Иргиза</h3>
+        <p>Әліби родился в ауле Шабаган Иргизского района, на старом становище, где с давних времён жили его предки. Детство пришлось на голодные тридцатые и военные сороковые.</p>
       </div>
     </article>
 
     <article class="ch rv">
-      <div class="yr">1954<small>Алматы</small></div>
+      <div class="yr">1941<small>Военные годы</small></div>
       <div class="body">
-        <h3>Диплом ветеринара</h3>
-        <p>В 1954 году он окончил Алматинский зооветеринарный институт и вернулся в Актюбинскую область. Его назначили главным ветеринарным врачом Карабутакской МТС и совхоза «Карабутак». С этого места началась вся его дальнейшая жизнь.</p>
+        <h3>Детство в труде</h3>
+        <p>«Мы рано повзрослели. Детских игр у нас много не бывало». Дети крутили чигирь, верхом на верблюжатах и жеребятах молотили просо, жали хлеб серпом. Норма была одна для всех: сжать 0,25 гектара в день. С другом Сагидоллой Умитаевым они перевыполняли её и получали призы.</p>
+        <p>Первую азбуку ему преподал учитель Нурекеш Оразымбетов. В семилетку в «Курылысе» он каждый день ездил за восемь километров.</p>
+      </div>
+    </article>
+
+    <article class="ch rv">
+      <div class="yr">1949<small>Иргиз · Алматы</small></div>
+      <div class="body">
+        <h3>Первый аттестат в роду</h3>
+        <p>Он окончил среднюю школу в Иргизе и стал первым из Койлыбаевых, кто получил аттестат о среднем образовании. Бабушка Алма вышла навстречу и расцеловала его. В том же году по совету первого секретаря райкома Нуркасыма Бердикулова он поступил в Алматинский зооветеринарный институт.</p>
+        <blockquote>«Чаще всего мы в общежитии так и жили, едя кипяток с хлебом». Помощь земляков из района студенты получали на Главпочтамте.</blockquote>
+      </div>
+    </article>
+
+    <article class="ch key rv">
+      <div class="yr">1954<small>Целина</small></div>
+      <div class="body">
+        <h3>Ветврач и первые целинники</h3>
+        <p>С дипломом ветеринарного врача он приехал в Карабутак главным ветврачом МТС. Как член бюро райкома комсомола встречал новосёлов на станциях Орск и Домбаровка. В район приехали больше двух тысяч человек, и каждая семья брала на постой двух-трёх.</p>
+        <p>В марте 1955 года в карабутакской степи легла первая борозда и появились три целинных совхоза. В 1956-м район сдал государству 5,9 млн пудов зерна.</p>
       </div>
     </article>
 
@@ -287,45 +425,60 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">1958<small>Райисполком</small></div>
       <div class="body">
         <h3>Первые руководящие должности</h3>
-        <p>Уже через четыре года молодого специалиста поставили начальником сельскохозяйственной инспекции Карабутакского района и заместителем председателя райисполкома. В том же 1958 году его впервые избрали депутатом. Депутатом районного и сельского Советов он оставался до 1994 года.</p>
+        <p>После МТС он был главным ветврачом нового совхоза «Карабутак», затем начальником районной инспекции сельского хозяйства и заместителем председателя райисполкома. В 1958 году его впервые избрали депутатом, и депутатом районного и сельского Советов он оставался до 1994 года.</p>
       </div>
     </article>
 
     <article class="ch key rv">
-      <div class="yr">1959<small>Совхоз им. Шевченко</small></div>
+      <div class="yr">1959<small>Совхоз «Карабутак»</small></div>
       <div class="body">
         <h3>Директор совхоза</h3>
-        <p>В 1959 году ему доверили совхоз, который раньше назывался «Карабутак» и получил имя Шевченко. Директором он проработал с 1959 по 1971 год и затем снова с 1975 по 1985. Между этими периодами он возглавлял районное управление сельского хозяйства и совхоз имени XX партсъезда.</p>
-        <p>Он ездил учиться у лучших хозяйств Казахстана и Узбекистана, встречался с прославленными председателями колхозов и Героями Социалистического Труда, бывал в научном институте Бараева в Шортанды. Всё увиденное он переносил на свою землю. Под его руководством совхоз стал крупным и прибыльным хозяйством области.</p>
-        <div class="fact">
-          <div><b>500 ц/га</b><span>зелёной массы кукурузы<br>у звена Жумабека Канатова, 1960</span></div>
-          <div><b>26 лет</b><span>во главе совхозов<br>Карабутакского района</span></div>
+        <p>В 1959 году ему доверили совхоз «Карабутак». Он руководил им в 1959–1971 и 1975–1985 годах. Учился у лучших: ездил в Узбекистан и Кыргызстан, в «Пахтаарал», к академику Бараеву в Шортанды. «Благодаря его теории земледелия мы смогли сберечь от эрозии наши поля».</p>
+        <div class="grow" aria-label="Совхоз при приёме и в 1985 году">
+          <div><span>Коровы</span><b>300 <i>→</i> 4 700</b></div>
+          <div><span>Овцы</span><b>6 тыс. <i>→</i> 53,7 тыс.</b></div>
+          <div><span>Лошади</span><b>200 <i>→</i> 545</b></div>
+          <div><span>Посевы, га</span><b>4 тыс. <i>→</i> 23,6 тыс.</b></div>
         </div>
-        <figure class="photo"><figcaption><b>Совхоз имени Шевченко</b>Место для фото с полей, совхозной конторы или коллектива</figcaption></figure>
+        <p>При нём построили городок целинников с отдельными домами для механизаторов и чабанов, Дом культуры на 300 мест, детский комбинат на 140 детей, школу, фельдшерские пункты во всех четырёх отделениях, мастерские и откормочные комплексы.</p>
       </div>
     </article>
 
     <article class="ch rv">
       <div class="yr">1961<small>Акмола</small></div>
       <div class="body">
-        <h3>Пример для всей страны</h3>
-        <p>На республиканском сельскохозяйственном совещании в Акмоле Никита Хрущёв отдельно похвалил кукурузоводов карабутакского совхоза и поставил их опыт в пример всему Союзу. Әліби Қойлыбаев сидел в зале как директор этого хозяйства. В том же году его избрали депутатом областного Совета.</p>
+        <h3>Пример для всего Союза</h3>
+        <p>Зимой в совхоз приехала инспектор ЦК КПСС Степанова: в тулупе и байпаках объезжала фермы на санях и смотрела силос. В марте на республиканском совещании в Акмоле она посоветовала ему сесть поближе. Он сел в 12-м ряду. Хрущёв говорил четыре часа и поставил кукурузоводов совхоза в пример всей стране.</p>
+        <div class="fact">
+          <div><b>500 ц/га</b><span>зелёной массы кукурузы<br>у звена Жумабека Канатова</span></div>
+          <div><b>2,6 м</b><span>высота кукурузы<br>на его поле в 1961 году</span></div>
+        </div>
       </div>
     </article>
 
     <article class="ch rv">
-      <div class="yr">1972<small>Италия · Марокко</small></div>
+      <div class="yr">1966<small>Имя Шевченко</small></div>
       <div class="body">
-        <h3>Поездка за рубеж</h3>
-        <p>Для советского сельского руководителя это была редкость: десятидневная поездка по Италии и Марокко.</p>
+        <h3>Первый орден и новое имя совхоза</h3>
+        <p>8 августа 1966 года совхоз «Карабутак» получил имя Тараса Шевченко: в мае 1848 года украинский поэт проходил здесь со ссыльной экспедицией. По письму коллектива московский скульптор Школовский создал памятник, и в 1968 году его поставили перед конторой совхоза.</p>
+        <p>В том же 1966 году Әліби Қойлыбаев получил свой первый орден — Трудового Красного Знамени.</p>
+      </div>
+    </article>
+
+    <article class="ch rv">
+      <div class="yr">1971<small>Район</small></div>
+      <div class="body">
+        <h3>Управление и «XX партсъезд»</h3>
+        <p>Он возглавил районное управление сельского хозяйства, но тяготился тем, что советы не доходят до дела: «Ты ведь не директор, который сам берёт на себя ответственность». Он просился в совхоз «Акколь», а обком направил его в племенной совхоз имени XX партсъезда. Директором туда его назначили 30 марта 1974 года. В 1972 году была редкая для сельского руководителя десятидневная поездка в Италию и Марокко.</p>
       </div>
     </article>
 
     <article class="ch key rv">
-      <div class="yr">1980<small>Верховный Совет</small></div>
+      <div class="yr">1981<small>Верховный Совет</small></div>
       <div class="body">
-        <h3>Депутат Верховного Совета Казахской ССР</h3>
-        <p>В феврале 1980 года Карабутакский округ избрал его депутатом Верховного Совета Казахской ССР десятого созыва. Много лет он также был членом райкома и бюро райкома, несколько раз входил в состав обкома партии.</p>
+        <h3>Депутат и миллион пудов</h3>
+        <p>В 1980 году Карабутакский округ избрал его депутатом Верховного Совета Казахской ССР десятого созыва. 3 декабря 1981 года он выступил на четвёртой сессии: совхоз впервые сдал больше миллиона пудов зерна и закончил год с прибылью свыше 1,2 млн рублей.</p>
+        <p>С трибуны он просил за земляков: открыть в Карабутаке филиал мясокомбината, чтобы не гнать скот за 220–300 км, провести телевидение и начать строить аэропорт в далёком Иргизе.</p>
       </div>
     </article>
 
@@ -333,7 +486,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">1986<small>Лесхоз</small></div>
       <div class="body">
         <h3>Лес вместо поля</h3>
-        <p>Недолго поработав заместителем главного врача районной ветстанции, он возглавил предприятие лесного хозяйства и руководил им десять лет, до 1996 года.</p>
+        <p>Последние рабочие годы он руководил Карабутакским лесхозом. Село Богетсай защитили от движущихся песков, оздоровили долину реки Ор, обсадили деревьями дорогу Карабутак — Иргиз до фермы Калыбай, озеленили Аккум, Кумтогай, Ойынколь.</p>
       </div>
     </article>
 
@@ -341,7 +494,16 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">1994<small>Мечеть</small></div>
       <div class="body">
         <h3>Мечеть Карабутака</h3>
-        <p>Когда в посёлке решили строить мечеть, комиссию по строительству возглавил Әліби-ата. Здание поднялось за пять месяцев.</p>
+        <p>Аким района Марат Габидуллин попросил его взяться за брошенную стройку мечети. Әліби-ата почти месяц раздумывал, потом возглавил комиссию из девяти уважаемых людей. Недостроенное здание бытового комбината за четыре-пять месяцев превратилось в дом веры с минаретом и куполом. Помогали все коллективы района.</p>
+      </div>
+    </article>
+
+    <article class="ch rv">
+      <div class="yr">1997<small>Актобе</small></div>
+      <div class="body">
+        <h3>Прощание с Карабутаком</h3>
+        <p>13 сентября 1997 года семья переехала в Актобе. Земляки в десятке мест стелили дастарханы и провожали их благословениями. «Родился я в Иргизе, но зрелым гражданином меня сделал Карабутак».</p>
+        <p>В августе 2000 года на районном празднике ему присвоили звание почётного гражданина Айтекебийского района. Эту награду он считал самой высокой.</p>
       </div>
     </article>
 
@@ -349,28 +511,107 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">2003<small>Книга</small></div>
       <div class="body">
         <h3>«Бабамнан қалған байтағым»</h3>
-        <p>Уже на пенсии он написал книгу о прошлом и настоящем родного края, чтобы молодые знали, на какой земле живут. Она выдержала три издания, все три сегодня хранятся в Карабутакском музее. Он много сделал и для самого музея: нынешний директор называет его среди тех, благодаря кому музей уцелел.</p>
-        <p>В 2004 году его пригласили в Астану на празднование 50-летия освоения целины и наградили юбилейной медалью. Ему было присвоено звание почётного гражданина Айтекебийского района.</p>
+        <p>Накануне семидесятилетия, которое отметили большим тоем в январе 2002 года, он взялся за перо. Первое издание книги о Карабутаке вышло в 2003 году, дополненное — в 2007-м, третье — в 2012-м. Все три хранятся в Карабутакском музее.</p>
+        <p>В 2004 году по приглашению Президента он приехал в Астану на празднование 50-летия освоения целины и был награждён юбилейной медалью.</p>
       </div>
     </article>
 
     <article class="ch rv">
-      <div class="yr">2018<small>86 лет</small></div>
+      <div class="yr">2018<small>Память</small></div>
       <div class="body">
         <h3>Память</h3>
-        <p>Әліби Қойлыбаев ушёл в 2018 году, на 87-м году жизни. Он вырастил пятерых детей. В тот же год семья открыла в Карабутаке парк в честь отца: высадили больше 600 деревьев, построили детские и спортивные площадки, футбольное поле. Парк носит имя Әліби Қойлыбаева, и семья продолжает его развивать.</p>
-        <p>В январе 2024 года в Карабутакском музее прошла выставка его личных вещей, книг и фотографий. Для неё школьники провели урок с тем же названием, что и у его книги.</p>
+        <p>Әліби Қойлыбаев ушёл в 2018 году, на 87-м году жизни. В тот же год семья открыла в Карабутаке парк в честь отца: высадили больше 600 деревьев, построили детские и спортивные площадки, футбольное поле. Парк носит его имя, и семья продолжает его развивать.</p>
+        <p>В январе 2024 года в Карабутакском музее прошла выставка его личных вещей, книг и фотографий. Школьники провели урок с тем же названием, что и у его книги.</p>
       </div>
     </article>
   </div>
 </section>
 
+<!-- ============ AMANAT ============ -->
+<section class="amanat" id="amanat">
+  <div class="wide">
+    <div class="rv">
+      <p class="label">Аманат · Слово к потомкам</p>
+      <h2 class="sec-title">Напутствие Әліби-ата</h2>
+      <p class="sec-lead">Свою книгу он адресовал молодёжи, «только устремляющемуся в будущее поколению». Это его слова из книги «Бабамнан қалған байтағым» в переводе с казахского.</p>
+    </div>
+    <p class="main-q rv">Вновь сделать цветущим этот край, где остались следы предков, и передать его в руки поколения, достойного их славы, — вот что должно волновать ныне моих земляков.</p>
+    <p class="who rv">— Из заключения книги</p>
+
+    <div class="quotes">
+      <figure class="rv"><blockquote>После человека остаётся след. После человека остаются потомки, остаётся добрый пример, остаются завершённые дела и мечты и цели, до которых он сам не успел дойти.</blockquote><figcaption>О смысле жизни</figcaption></figure>
+      <figure class="rv"><blockquote>За каждый аул, район нашей страны, за каждый холм, родник, колодец, даже за пустынную степь — все мы в ответе.</blockquote><figcaption>О родной земле</figcaption></figure>
+      <figure class="rv"><blockquote>Всё это начинается с полного знания себя, своей нации, родной земли, её вчерашнего и сегодняшнего. Что будет у человека без этого? Ничего.</blockquote><figcaption>О знании истории</figcaption></figure>
+      <figure class="rv"><blockquote>Исполнилось двадцать лет с тех пор, как государство Республика Казахстан заняло законное место на карте мира. Это — счастье. Удержать это счастье — великий долг для всех наших потомков.</blockquote><figcaption>О независимости</figcaption></figure>
+      <figure class="rv"><blockquote>Смысл жизни не только в том, чтобы насытить живот и прикрыть подол. Здоровье духа, целостность самосознания, достоинство нации — тоже ложатся грузом ответственности на гражданина.</blockquote><figcaption>О достоинстве</figcaption></figure>
+      <figure class="rv"><blockquote>В прошлой истории, в разных буранах политики народ, простые люди не виноваты. Поэтому нет необходимости бросать землю в прошлое.</blockquote><figcaption>О прошлом</figcaption></figure>
+      <figure class="rv"><blockquote>Труд воспитал во мне человечность и сознательность, поднял меня на многие высоты.</blockquote><figcaption>О труде</figcaption></figure>
+      <figure class="rv"><blockquote>Для человека нет чести выше, чем уважение родного народа.</blockquote><figcaption>О чести</figcaption></figure>
+      <figure class="rv"><blockquote>История каждого аула казахской степи должна быть собрана. Лишь тогда потомки будут ценить обитель предков и её святость.</blockquote><figcaption>О памяти</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HISTORY ============ -->
+<section class="wide block" id="history">
+  <div class="rv">
+    <p class="label">Тарих</p>
+    <h2 class="sec-title">История края</h2>
+    <p class="sec-lead">Иргиз и Карабутак — земля, «откуда откочевали семь народов». Эти события Әліби-ата описывает в первой части книги. Синим отмечены события из жизни его семьи.</p>
+    <div class="legend2"><span style="--c:var(--gold)">история края</span><span style="--c:var(--sky)">семья Койлыбаевых</span></div>
+  </div>
+
+  <div class="era rv">
+    <h3>Древность и Средние века</h3>
+    <div class="ev">
+      <article><div class="d">V в. до н. э.</div><h4>Иргиз у Геродота</h4><p>«Отец истории» упоминает реку как «Гиргис». С тех же времён живёт предание о Шыраке, заведшем войско Дария в безводную степь между Иргизом и Аралом.</p></article>
+      <article><div class="d">1216</div><h4>Джучи на Иргизе</h4><p>Войска Джучи разбивают меркитов, обосновавшихся на реке Иргиз.</p></article>
+      <article><div class="d">1391</div><h4>Облава Тимура</h4><p>Войско Тимура в походе на Тохтамыша, оставшись без припасов, окружило в Иргизской степи участок в 70–80 км. Об этой охоте писал летописец Шараф ад-Дин Али Йезди.</p></article>
+    </div>
+  </div>
+
+  <div class="era rv">
+    <h3>Казахское ханство</h3>
+    <div class="ev">
+      <article><div class="d">1723</div><h4>«Ақтабан шұбырынды»</h4><p>Джунгарское нашествие, «годы великого бедствия». Так называется и песня Кожаберген-жырау об этих страданиях народа.</p></article>
+      <article><div class="d">1731</div><h4>Присяга на Манитобе</h4><p>Посольство А. И. Тевкелева прибыло в ставку Абулхаир-хана на Иргизе. Хан, 3 батыра и 27 старшин дали присягу на холме Манитобе.</p></article>
+      <article><div class="d">1844</div><h4>Ставка Кенесары</h4><p>Восстание хана Кенесары прошло по берегам Карабутака, Талдыка и Ора. Ханская ставка стояла в Килемжайгане, в июле 1844 года войско ушло к Орской крепости.</p></article>
+    </div>
+  </div>
+
+  <div class="era rv">
+    <h3>Карабутакское укрепление</h3>
+    <div class="ev">
+      <article><div class="d">1848</div><h4>Форт и Шевченко</h4><p>13–14 мая штабс-капитан К. И. Герн заложил Карабутакский форт. 20 мая сюда пришла Аральская экспедиция Бутакова, в которой шёл ссыльный Тарас Шевченко. Он нарисовал форт и одинокое дерево «Жалғыз ағаш».</p></article>
+      <article><div class="d">1887</div><h4>Первая школа</h4><p>По хлопотам Ибрая Алтынсарина 1 ноября открылось русско-казахское училище. На радостях устроили той с байгой. В 1895 году открылось женское училище.</p></article>
+      <article><div class="d">1909</div><h4>Мечеть в Белкопе</h4><p>29 апреля с разрешения МВД открыта мечеть Талдыкской волости. Мечеть и церковь самого укрепления разрушили в 1937 году.</p></article>
+      <article><div class="d">1916</div><h4>Национально-освободительное восстание</h4><p>После июньского указа о наборе на тыловые работы восстали Баксайысская, Белкопинская и Талдыкская волости. В ноябре–декабре царские войска взяли Карабутак.</p></article>
+    </div>
+  </div>
+
+  <div class="era rv">
+    <h3>XX век</h3>
+    <div class="ev">
+      <article><div class="d">1918</div><h4>Революция и Гражданская война</h4><p>Баймен Алманов создаёт в Карабутаке первый советский комитет. 13 мая в посёлок входит армия Дутова.</p></article>
+      <article><div class="d">1921–1933</div><h4>Голод и конфискации</h4><p>Голод 1921–1922 годов, конфискация байских хозяйств в 1928-м, голод 1932–1933 годов, от которого люди бежали за пределы края.</p></article>
+      <article class="fam"><div class="d">1932</div><h4>Рождение Әліби</h4><p>В самый тяжёлый год он родился в Шабагане, в семье Койлыбая Белесова.</p></article>
+      <article><div class="d">1936</div><h4>Карабутакский район</h4><p>В октябре образован Карабутакский район: 120 колхозов, МТС и совхоз.</p></article>
+      <article class="fam"><div class="d">1943</div><h4>Просо для фронта</h4><p>Звено Койлыбая Белесова собирает по 125 центнеров проса с гектара и прославляет колхоз «Шабаган».</p></article>
+      <article><div class="d">1955</div><h4>Целина</h4><p>В марте в карабутакской степи появились три целинных совхоза. За 1955–1956 годы освоено 184 тыс. гектаров целины.</p></article>
+      <article><div class="d">1966</div><h4>Совхоз имени Шевченко</h4><p>8 августа совхоз «Карабутак» получил имя Т. Г. Шевченко. В 1968 году поставлен памятник поэту.</p></article>
+      <article><div class="d">1991</div><h4>Независимость</h4><p>Казахстан становится независимым государством — «вековая мечта, орошённая слезами, кровью и потом многих поколений».</p></article>
+      <article><div class="d">1997</div><h4>Айтекебийский район</h4><p>Карабутакский район упразднён, его земли вошли в Айтекебийский район.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAREER ============ -->
 <section class="band" id="career">
   <div class="wide">
     <p class="label">Трудовой путь</p>
-    <h2 class="sec-title">Шесть десятилетий на одной земле</h2>
-    <p class="sub">От главного ветврача МТС до директора лесного хозяйства: сорок два года работы в одном районе.</p>
-    <div class="track-scroll" role="img" aria-label="Шкала трудового пути с 1954 по 1996 год">
+    <h2 class="sec-title">Сорок три года в Карабутаке</h2>
+    <p class="sub">От главного ветврача МТС до директора лесхоза — вся сознательная жизнь в одном районе.</p>
+    <div class="track-scroll" role="img" aria-label="Шкала трудового пути с 1954 по 1997 год">
       <div class="track" id="track"></div>
     </div>
     <div class="legend">
@@ -382,7 +623,8 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   </div>
 </section>
 
-<section class="wide awards-sec" id="awards">
+<!-- ============ AWARDS ============ -->
+<section class="wide block" id="awards">
   <div class="rv">
     <p class="label">Награды</p>
     <h2 class="sec-title">Ордена и звания</h2>
@@ -390,21 +632,72 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   <div class="awards">
     <div class="aw rv"><span class="m">2</span><span class="w">ордена Ленина</span><span class="d">1971 и 1980</span></div>
     <div class="aw rv"><span class="m">1</span><span class="w">орден Октябрьской Революции</span><span class="d">за труд в сельском хозяйстве</span></div>
-    <div class="aw rv"><span class="m">1</span><span class="w">орден Трудового Красного Знамени</span><span class="d">за труд в сельском хозяйстве</span></div>
-    <div class="aw rv"><span class="m">10</span><span class="w">медалей</span><span class="d">в том числе «Тыңға 50 жыл», 2004</span></div>
-    <div class="aw rv"><span class="m">★</span><span class="w">Грамота Верховного Совета КазССР</span><span class="d">за многолетний труд</span></div>
-    <div class="aw rv"><span class="m">★</span><span class="w">Почётный гражданин</span><span class="d">Айтекебийского района</span></div>
+    <div class="aw rv"><span class="m">1</span><span class="w">орден Трудового Красного Знамени</span><span class="d">1966, первый орден</span></div>
+    <div class="aw rv"><span class="m">12</span><span class="w">медалей</span><span class="d">в том числе «Тыңға 50 жыл», 2004</span></div>
+    <div class="aw rv"><span class="m">★</span><span class="w">Почётная грамота Верховного Совета КазССР</span><span class="d">1982, за многолетний труд</span></div>
+    <div class="aw rv"><span class="m">★</span><span class="w">Почётный гражданин Айтекебийского района</span><span class="d">август 2000</span></div>
+  </div>
+  <p class="aw-note rv">«Я считаю это почётное звание самой высокой из моих наград. Ведь для человека нет чести выше, чем уважение родного народа».</p>
+</section>
+
+<!-- ============ BOOK ============ -->
+<section class="wide block" id="book">
+  <div class="rv">
+    <p class="label">Кітап</p>
+    <h2 class="sec-title">Книга о родной земле</h2>
+  </div>
+  <div class="book">
+    <div class="cover rv" aria-hidden="true">
+      <span class="a">Әліби Қойлыбаев</span>
+      <span class="o"><svg viewBox="0 0 64 32" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M32 4c-6 0-9 6-6 10s9 3 9-1-6-4-6 0M32 28c6 0 9-6 6-10s-9-3-9 1 6 4 6 0M4 16h16M44 16h16"/><circle cx="32" cy="16" r="2" fill="currentColor"/></svg></span>
+      <span class="t">Бабамнан қалған байтағым</span>
+      <span class="a">Қарабұтақ туралы толғаныс</span>
+    </div>
+    <div class="book-text rv">
+      <p>«Я не профессиональный писатель. И мысль прославить своё имя — тоже не моя». Книгу он писал для того, чтобы выросший в городе ребёнок не смотрел на степь как на унылую пустошь и знал, что в каждом её увале и логе лежит история. Подзаголовок книги — «Размышления о Карабутаке».</p>
+      <p>В первой части он рассказывает об Иргизе и Карабутаке от Геродота до наших дней: о мавзолеях, биях и батырах, акынах и певцах края, о восстании 1916 года, о целине и о людях, с которыми работал. Вторая часть — документы и отзывы: его речь в Верховном Совете, газетные статьи о нём и воспоминания земляков.</p>
+      <div class="editions">
+        <div><b>2003</b><span>первое издание,<br>издательство «Nobel»</span></div>
+        <div><b>2007</b><span>дополненное второе,<br>ТОО «А-Полиграфия»</span></div>
+        <div><b>2012</b><span>третье издание,<br>Актобе, 328 страниц</span></div>
+      </div>
+      <ol class="toc">
+        <li>Край, где перерезали мою пуповину…</li>
+        <li>Край, где я возмужал</li>
+        <li>Увиденное и запавшее в душу</li>
+        <li>Раскинувший листву байтерек…</li>
+        <li>Шевченко воспел Карабутак</li>
+        <li>Хан Кенесары — символ независимости</li>
+        <li>Кормильцы голодных лет</li>
+        <li>Целинная эпопея Алиби Койлыбаева</li>
+      </ol>
+    </div>
   </div>
 </section>
 
-<section class="wide gallery-sec" id="gallery">
+<!-- ============ PRESS ============ -->
+<section class="wide block" id="press">
+  <div class="rv">
+    <p class="label">Пресса</p>
+    <h2 class="sec-title">Газеты о нём</h2>
+    <p class="sec-lead">Страницы, вошедшие в книгу. Нажмите, чтобы увеличить.</p>
+  </div>
+  <div class="press">
+    <figure class="clip rv" data-full="img/kommunizm-zholy-1979.jpg"><img src="img/kommunizm-zholy-1979.jpg" alt="Газета «Коммунизм жолы», 1979, статья «Тың — молшылық көзі»" loading="lazy" width="946" height="1359"><figcaption><b>«Коммунизм жолы», 1979</b>«Тың — молшылық көзі»: его статья к 25-летию освоения целины</figcaption></figure>
+    <figure class="clip rv" data-full="img/pravda-1983.jpg"><img src="img/pravda-1983.jpg" alt="Газета «Правда», 22 августа 1983, статья «Контрасты жатвы. Острый сигнал»" loading="lazy" width="946" height="1359"><figcaption><b>«Правда», 22 августа 1983</b>«Контрасты жатвы. Острый сигнал»: о директоре совхоза имени Шевченко</figcaption></figure>
+    <figure class="clip rv" data-full="img/shevchenko-karabutak.jpg"><img src="img/shevchenko-karabutak.jpg" alt="Статья «Шевченко воспел Карабутак» с фотографией Әліби Қойлыбаева" loading="lazy" width="946" height="1359"><figcaption><b>«Шевченко воспел Карабутак»</b>Т. Базыгина, к 190-летию поэта: рассказ бывшего директора совхоза</figcaption></figure>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="wide block" id="gallery">
   <div class="rv">
     <p class="label">Фотоархив</p>
     <h2 class="sec-title">Из семейного альбома</h2>
   </div>
   <div class="gallery">
     <figure class="photo rv"><figcaption><b>Молодые годы</b>Место для фото</figcaption></figure>
-    <figure class="photo rv"><figcaption><b>С наградами</b>Место для фото</figcaption></figure>
+    <figure class="photo rv"><figcaption><b>С Зоей Торебаевной</b>Место для фото</figcaption></figure>
     <figure class="photo rv"><figcaption><b>Парк имени Әліби Қойлыбаева</b>Место для фото</figcaption></figure>
   </div>
   <p class="note">Фотографии добавляются из семейного архива. Пришлите снимки, и они займут эти места.</p>
@@ -415,6 +708,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   <div class="wide">
     <p class="label">Источники</p>
     <ol>
+      <li>Әліби Қойлыбаев. «Бабамнан қалған байтағым» («Родная земля, оставшаяся мне от предков. Размышления о Карабутаке»). Актобе, 2012. Перевод на русский язык, 2026. Цитаты на сайте даны по этому переводу.</li>
       <li><a href="https://myaktobe.kz/archives/3306" target="_blank" rel="noopener">Алиби Койлыбаев — «История Актюбинской области»</a></li>
       <li><a href="https://www.nur.kz/society/1746044-aktubinskij-biznesmen-postroil-park-v-rodnom-aule/" target="_blank" rel="noopener">Актюбинский бизнесмен построил парк в родном ауле — NUR.KZ, 2018</a></li>
       <li><a href="https://zhanalyq-zharshysy.kz/madeniet/babamnan-kalgan-bajtagym/" target="_blank" rel="noopener">Бабамнан қалған байтағым — «Жаңалық жаршысы», 2024</a></li>
@@ -425,14 +719,14 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   </div>
 </footer>
 
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Газетная страница"><img alt=""><button type="button" aria-label="Закрыть">×</button></div>
+
 <script>
 (function(){
-  // Nav background on scroll
   var nav=document.getElementById('nav');
   function onScroll(){nav.classList.toggle('solid',window.scrollY>window.innerHeight*0.6);}
   onScroll();window.addEventListener('scroll',onScroll,{passive:true});
 
-  // Theme toggle
   var btn=document.getElementById('theme'),root=document.documentElement;
   btn.addEventListener('click',function(){
     var dark=root.dataset.theme?root.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
@@ -442,19 +736,31 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
 
   // Career track
   var tr=document.getElementById('track');
-  var a=1954,b=1997;
+  var a=1954,b=1998;
   function pct(y){return ((y-a)/(b-a)*100)+'%';}
   var ax=document.createElement('div');ax.className='axis';tr.appendChild(ax);
-  [[1954,1958,'vet'],[1958,1959,'adm'],[1959,1971,'dir'],[1971,1975,'adm'],[1975,1986,'dir'],[1986,1987,'vet'],[1986.6,1996,'les']].forEach(function(s,i){
+  [[1954,1958,'vet'],[1958,1959,'adm'],[1959,1971,'dir'],[1971,1974.2,'adm'],[1974.25,1985.5,'dir'],[1986,1997,'les']].forEach(function(s,i){
     var d=document.createElement('div');d.className='seg '+s[2];d.style.left=pct(s[0]);d.style.width=((s[1]-s[0])/(b-a)*100)+'%';d.style.transitionDelay=(i*0.12)+'s';tr.appendChild(d);});
-  [[1954,'up','Главный ветврач','МТС «Карабутак»'],[1959,'dn','Директор','совхоз им. Шевченко'],[1971,'up','Управление с/х','и совхоз им. XX съезда'],[1975,'dn','Снова директор','совхоз им. Шевченко'],[1986,'up','Лесное хозяйство','директор до 1996']].forEach(function(l){
+  [[1954,'up','Главный ветврач','МТС, совхоз «Карабутак»'],[1959,'dn','Директор','совхоз «Карабутак» / им. Шевченко'],[1971,'up','Управление с/х','начальник районного управления'],[1974,'dn','Директор','им. XX партсъезда, затем им. Шевченко'],[1986,'up','Лесхоз','Карабутакский лесхоз']].forEach(function(l){
     var d=document.createElement('div');d.className='t '+l[1];d.style.left=pct(l[0]);d.innerHTML=l[2]+'<i>'+l[0]+' · '+l[3]+'</i>';tr.appendChild(d);});
   [1960,1970,1980,1990].forEach(function(y){var d=document.createElement('div');d.className='tick';d.style.left=pct(y);d.textContent=y;tr.appendChild(d);});
 
-  // Reveal on scroll
+  // Lightbox
+  var lb=document.getElementById('lb'),lbImg=lb.querySelector('img');
+  document.querySelectorAll('.clip').forEach(function(c){
+    c.tabIndex=0;c.setAttribute('role','button');
+    function open(){lbImg.src=c.dataset.full;lbImg.alt=c.querySelector('img').alt;lb.classList.add('open');lb.querySelector('button').focus();}
+    c.addEventListener('click',open);
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();open();}});
+  });
+  function close(){lb.classList.remove('open');}
+  lb.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+
+  // Reveal
   var els=document.querySelectorAll('.rv, .band');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
-  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.15,rootMargin:'0px 0px -40px 0px'});
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e){io.observe(e)});
 })();
 </script>
