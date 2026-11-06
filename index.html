@@ -106,6 +106,21 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .stats span{display:block;margin-top:8px;font-family:var(--util);font-size:15px;color:var(--muted);line-height:1.3}
 @media (max-width:700px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats div:nth-child(3){border-left:0}.stats div:nth-child(n+3){border-top:1px solid var(--line)}}
 
+/* Film */
+.film{margin-top:36px}
+.player{position:relative;background:#000;border-radius:8px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.player video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+.player .cc{position:absolute;left:0;right:0;bottom:56px;display:grid;justify-items:center;gap:4px;padding:0 4%;pointer-events:none;text-align:center}
+.player .cc span{display:inline-block;max-width:100%;padding:3px 10px;border-radius:3px;background:rgba(0,0,0,.62);line-height:1.3;font-family:Inter,"PT Sans Narrow",Arial,sans-serif}
+.player .cc .kk{color:#fff;font-weight:600;font-size:clamp(13px,2.1vw,21px)}
+.player .cc .ru{color:#F1D480;font-size:clamp(12px,1.9vw,19px)}
+.player .cc span:empty{display:none}
+.film-bar{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-top:14px;font-family:var(--util);font-size:15px;color:var(--muted)}
+.film-bar button{font:inherit;cursor:pointer;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 14px}
+.film-bar button[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:#fff}
+.film-bar a{margin-left:auto;color:var(--sky)}
+.film-note{margin-top:14px;color:var(--muted);font-size:16px;max-width:46em}
+
 /* Roots / family tree */
 .tree{margin-top:36px;display:grid;justify-items:center;gap:0}
 .gen{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative}
@@ -282,6 +297,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
 <nav class="nav" id="nav" aria-label="Разделы">
   <a class="brand" href="#top">Әліби-ата</a>
   <ul>
+    <li><a href="#film">Фильм</a></li>
     <li><a href="#roots">Корни</a></li>
     <li><a href="#story">Жизнь</a></li>
     <li><a href="#amanat">Аманат</a></li>
@@ -328,6 +344,32 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <div><b>2</b><span>ордена<br>Ленина</span></div>
     <div><b>36</b><span>лет депутатом<br>Советов</span></div>
     <div><b>3</b><span>издания книги<br>о родном крае</span></div>
+  </div>
+</section>
+
+<!-- ============ FILM ============ -->
+<section class="wide block" id="film">
+  <div class="rv">
+    <p class="label">Деректі фильм</p>
+    <h2 class="sec-title">Фильм об Әліби-ата</h2>
+    <p class="sec-lead">Телевизионный фильм о жизни отца, рассказанный его детьми, с воспоминаниями самого Әліби-ата. 14 минут. Субтитры на казахском и русском языках.</p>
+  </div>
+  <div class="film rv">
+    <div class="player">
+      <video id="film-video" controls preload="metadata" playsinline poster="video/poster.jpg">
+        <source src="video/alibi-ata-film.mp4" type="video/mp4">
+        <track kind="subtitles" srclang="kk" label="Қазақша" src="video/kk.vtt">
+        <track kind="subtitles" srclang="ru" label="Русский" src="video/ru.vtt">
+      </video>
+      <div class="cc" id="film-cc" aria-live="off"><span class="kk"></span><span class="ru"></span></div>
+    </div>
+    <div class="film-bar">
+      <span>Субтитры:</span>
+      <button type="button" data-lang="kk" aria-pressed="true">Қазақша</button>
+      <button type="button" data-lang="ru" aria-pressed="true">Русский</button>
+      <a href="video/ru.srt" download>Скачать субтитры (.srt)</a>
+    </div>
+    <p class="film-note">Казахский текст расшифрован по звуку и сверен с книгой, перевод на русский — по смыслу. Если заметите неточность в именах или названиях, её легко исправить.</p>
   </div>
 </section>
 
@@ -390,7 +432,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">1932<small>Шабаған</small></div>
       <div class="body">
         <h3>Рождение на берегу Иргиза</h3>
-        <p>Әліби родился в ауле Шабаган Иргизского района, на старом становище, где с давних времён жили его предки. Детство пришлось на голодные тридцатые и военные сороковые.</p>
+        <p>Әліби родился 5 января 1932 года в ауле Шабаган Иргизского района, на старом становище, где с давних времён жили его предки. Детство пришлось на голодные тридцатые и военные сороковые.</p>
       </div>
     </article>
 
@@ -479,6 +521,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
         <h3>Депутат и миллион пудов</h3>
         <p>В 1980 году Карабутакский округ избрал его депутатом Верховного Совета Казахской ССР десятого созыва. 3 декабря 1981 года он выступил на четвёртой сессии: совхоз впервые сдал больше миллиона пудов зерна и закончил год с прибылью свыше 1,2 млн рублей.</p>
         <p>С трибуны он просил за земляков: открыть в Карабутаке филиал мясокомбината, чтобы не гнать скот за 220–300 км, провести телевидение и начать строить аэропорт в далёком Иргизе.</p>
+        <blockquote>«Через пару месяцев пришло письмо: „Ваш наказ будет выполнен“… Поставили телевышку высотой 264 метра». — из фильма</blockquote>
       </div>
     </article>
 
@@ -520,7 +563,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <div class="yr">2018<small>Память</small></div>
       <div class="body">
         <h3>Память</h3>
-        <p>Әліби Қойлыбаев ушёл в 2018 году, на 87-м году жизни. В тот же год семья открыла в Карабутаке парк в честь отца: высадили больше 600 деревьев, построили детские и спортивные площадки, футбольное поле. Парк носит его имя, и семья продолжает его развивать.</p>
+        <p>Әліби Қойлыбаев ушёл из жизни 29 апреля 2018 года, на 87-м году жизни. После него остались двое сыновей и три дочери, 11 внуков и 14 правнуков. В тот же год семья открыла в Карабутаке парк в честь отца: высадили больше 600 деревьев, построили детские и спортивные площадки, футбольное поле. Парк носит его имя, и семья продолжает его развивать.</p>
         <p>В январе 2024 года в Карабутакском музее прошла выставка его личных вещей, книг и фотографий. Школьники провели урок с тем же названием, что и у его книги.</p>
       </div>
     </article>
@@ -744,6 +787,26 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   [[1954,'up','Главный ветврач','МТС, совхоз «Карабутак»'],[1959,'dn','Директор','совхоз «Карабутак» / им. Шевченко'],[1971,'up','Управление с/х','начальник районного управления'],[1974,'dn','Директор','им. XX партсъезда, затем им. Шевченко'],[1986,'up','Лесхоз','Карабутакский лесхоз']].forEach(function(l){
     var d=document.createElement('div');d.className='t '+l[1];d.style.left=pct(l[0]);d.innerHTML=l[2]+'<i>'+l[0]+' · '+l[3]+'</i>';tr.appendChild(d);});
   [1960,1970,1980,1990].forEach(function(y){var d=document.createElement('div');d.className='tick';d.style.left=pct(y);d.textContent=y;tr.appendChild(d);});
+
+  // Film: bilingual subtitle overlay
+  var v=document.getElementById('film-video'),cc=document.getElementById('film-cc');
+  if(v&&cc){
+    var show={kk:true,ru:true},out={kk:cc.querySelector('.kk'),ru:cc.querySelector('.ru')};
+    function tr(l){for(var i=0;i<v.textTracks.length;i++){if(v.textTracks[i].language===l)return v.textTracks[i];}}
+    function render(l){var t=tr(l),x='';if(t&&t.cues&&show[l]){var now=v.currentTime;for(var i=0;i<t.cues.length;i++){var c=t.cues[i];if(c.startTime<=now&&now<c.endTime){x=c.text;break;}}}out[l].textContent=x;}
+    ['kk','ru'].forEach(function(l){var t=tr(l);if(!t)return;t.mode='hidden';t.addEventListener('cuechange',function(){render(l);});});
+    function all(){render('kk');render('ru');}
+    v.addEventListener('timeupdate',all);v.addEventListener('seeked',all);
+    document.querySelectorAll('track',v).forEach(function(t){t.addEventListener('load',all);});
+    document.querySelectorAll('.film-bar button').forEach(function(b){
+      b.addEventListener('click',function(){var l=b.dataset.lang;show[l]=!show[l];b.setAttribute('aria-pressed',show[l]);render(l);});
+    });
+    // native fullscreen hides the overlay: fall back to the browser's own Russian track there
+    document.addEventListener('fullscreenchange',function(){var fs=document.fullscreenElement===v,t=tr('ru');if(t)t.mode=fs?'showing':'hidden';});
+    v.addEventListener('webkitbeginfullscreen',function(){var t=tr('ru');if(t)t.mode='showing';});
+    v.addEventListener('webkitendfullscreen',function(){var t=tr('ru');if(t)t.mode='hidden';});
+    v.addEventListener('play',function(){document.dispatchEvent(new CustomEvent('film-play'));});
+  }
 
   // Lightbox
   var lb=document.getElementById('lb'),lbImg=lb.querySelector('img');
