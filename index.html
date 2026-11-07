@@ -7,6 +7,8 @@
 <meta name="description" content="Сайт-история о жизни Әліби Қойлыбаева (1932–2018), директора совхоза имени Шевченко в Карабутаке, автора книги «Бабамнан қалған байтағым».">
 <meta property="og:title" content="Әліби Қойлыбаев (1932–2018)">
 <meta property="og:image" content="img/portrait.jpg">
+<link rel="alternate" hreflang="ru" href="index.html">
+<link rel="alternate" hreflang="kk" href="kk.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans+Narrow:wght@400;700&display=swap">
@@ -49,6 +51,9 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .nav ul{display:flex;gap:20px;list-style:none;margin:0;padding:0}
 .nav ul a{font-family:var(--util);font-size:15px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:inherit;opacity:.85}
 .nav ul a:hover{opacity:1;color:var(--gold-2)}
+.lang{font-family:var(--util);font-size:14px;letter-spacing:.1em;text-decoration:none;color:inherit;border:1px solid currentColor;border-radius:999px;padding:6px 12px;opacity:.85;white-space:nowrap}
+.lang:hover{opacity:1}
+.lang b{font-weight:700}
 .theme{background:none;border:1px solid currentColor;color:inherit;border-radius:999px;width:36px;height:36px;display:grid;place-items:center;cursor:pointer;opacity:.85;flex:none}
 .theme:hover{opacity:1}
 .theme svg{width:18px;height:18px}
@@ -290,7 +295,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 }
 </style>
-<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+<script>document.documentElement.classList.add('js');try{var L=localStorage.getItem('lang'),here=document.documentElement.lang==='kk'?'kk':'ru';if(L&&L!==here&&!/[?&]stay/.test(location.search))location.replace(L==='kk'?'kk.html':'index.html')}catch(e){}try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
 
@@ -306,6 +311,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <li><a href="#book">Книга</a></li>
     <li><a href="#press">Пресса</a></li>
   </ul>
+  <a class="lang" id="lang-switch" href="kk.html" hreflang="kk" lang="kk" data-lang="kk" aria-label="Қазақ тіліндегі нұсқа"><b>РУС</b> · ҚАЗ</a>
   <button class="theme" id="theme" type="button" aria-label="Сменить тему">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
   </button>
@@ -776,6 +782,10 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     root.dataset.theme=dark?'light':'dark';
     try{localStorage.setItem('theme',root.dataset.theme)}catch(e){}
   });
+
+  // Language switch remembers the choice
+  var ls=document.getElementById('lang-switch');
+  if(ls)ls.addEventListener('click',function(){try{localStorage.setItem('lang',ls.dataset.lang)}catch(e){}});
 
   // Career track
   var tr=document.getElementById('track');
