@@ -297,6 +297,15 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .amanat .main-q::before{content:"«";color:#E6C473}
 .amanat .main-q::after{content:"»";color:#E6C473}
 .amanat .who{margin-top:14px;font-family:var(--util);font-size:15px;color:#A9A596}
+.voice-fab{position:fixed;left:max(16px,env(safe-area-inset-left,0px));bottom:max(16px,env(safe-area-inset-bottom,0px));z-index:30;display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--util);font-size:15px;letter-spacing:.05em;color:#0b1116;background:#E6C473;border:0;border-radius:999px;padding:11px 18px 11px 14px;cursor:pointer;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.55),0 0 0 0 rgba(230,196,115,.6);animation:fabpulse 2.6s ease-out 3}
+.voice-fab svg{width:20px;height:20px;flex:none}
+.voice-fab .ic-stop{display:none}.voice-fab.playing .ic-stop{display:inline}.voice-fab.playing .ic-spk{display:none}
+@keyframes fabpulse{0%{box-shadow:0 10px 30px -10px rgba(0,0,0,.55),0 0 0 0 rgba(230,196,115,.6)}70%{box-shadow:0 10px 30px -10px rgba(0,0,0,.55),0 0 0 16px rgba(230,196,115,0)}100%{box-shadow:0 10px 30px -10px rgba(0,0,0,.55),0 0 0 0 rgba(230,196,115,0)}}
+.voice-toast{position:fixed;left:50%;bottom:76px;transform:translateX(-50%);z-index:31;max-width:min(420px,calc(100vw - 32px));background:#1d1810;color:#F3EBD2;border:1px solid rgba(230,196,115,.5);border-radius:10px;padding:10px 14px;font-family:var(--util);font-size:14px;display:none}
+.voice-toast.on{display:block}
+@media (prefers-reduced-motion:reduce){.voice-fab{animation:none}}
 .say-all{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-family:var(--util);font-size:15px;letter-spacing:.06em;color:#0b1116;background:#E6C473;border:0;border-radius:999px;padding:10px 20px 10px 14px;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .say-all:hover{transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(230,196,115,.6)}
 .say-all svg,.say svg{width:18px;height:18px;flex:none}
@@ -996,6 +1005,9 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   </div>
 </footer>
 
+<button class="voice-fab" id="voice-fab" type="button" aria-controls="amanat"><svg class="ic-spk" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3a4.5 4.5 0 0 0-2.5-4v8a4.5 4.5 0 0 0 2.5-4zM14 3.2v2.1a7 7 0 0 1 0 13.4v2.1a9 9 0 0 0 0-17.6z"/></svg><svg class="ic-stop" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6 6h12v12H6z"/></svg><span>Голос диктора</span></button>
+<div class="voice-toast" id="voice-toast" role="status">Не удалось загрузить звук. Обновите страницу или попробуйте позже.</div>
+
 <div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Газетная страница"><img alt=""><button type="button" aria-label="Закрыть">×</button></div>
 
 <script>
@@ -1058,16 +1070,23 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     var audio=new Audio(),cur=null,queue=null,allBtn=document.getElementById('say-all');
     audio.preload='none';
     function mark(el){cards.forEach(function(c){c.classList.toggle('playing',c===el)});}
-    function stop(){audio.pause();mark(null);cur=null;queue=null;allBtn.classList.remove('playing');}
-    function play(el){cur=el;audio.src='audio/amanat/'+lang+'-'+el.dataset.n+'.mp3';audio.play().catch(stop);mark(el);}
+    var fab=document.getElementById('voice-fab'),toast=document.getElementById('voice-toast');
+    function stop(){audio.pause();mark(null);cur=null;queue=null;allBtn.classList.remove('playing');fab.classList.remove('playing');}
+    function fail(){stop();toast.classList.add('on');setTimeout(function(){toast.classList.remove('on')},6000);}
+    audio.addEventListener('error',function(){if(cur)fail();});
+    function play(el){cur=el;audio.src='audio/amanat/'+lang+'-'+el.dataset.n+'.mp3';audio.play().catch(function(e){if(e&&e.name==='NotAllowedError')stop();else fail();});mark(el);}
     audio.addEventListener('ended',function(){
       if(queue&&queue.length){var nx=queue.shift();play(nx);nx.scrollIntoView({block:'center',behavior:'smooth'});}
       else stop();});
     cards.forEach(function(el){el.querySelector('.say').addEventListener('click',function(){
       if(cur===el&&!audio.paused){stop();return;}queue=null;allBtn.classList.remove('playing');play(el);});});
+    function playAll(){queue=cards.slice(1);allBtn.classList.add('playing');fab.classList.add('playing');play(cards[0]);}
     allBtn.addEventListener('click',function(){
       if(queue||(!audio.paused&&allBtn.classList.contains('playing'))){stop();return;}
-      queue=cards.slice(1);allBtn.classList.add('playing');play(cards[0]);});
+      playAll();});
+    fab.addEventListener('click',function(){
+      if(fab.classList.contains('playing')){stop();return;}
+      playAll();cards[0].scrollIntoView({block:'center',behavior:'smooth'});});
     document.addEventListener('film-play',stop);
   })();
 
