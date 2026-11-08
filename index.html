@@ -177,6 +177,56 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
   .shz-label b{font-size:16px}.shz-label.on b,.shz-label.shz-hero b{font-size:20px}
 }
 
+/* Descendants tree */
+.urpaq{background:#0b0d0e;color:#ECE6D4;padding-block:clamp(64px,8vw,104px);position:relative;overflow:hidden}
+.urpaq::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(230,196,115,.10),transparent 55%);pointer-events:none}
+.urpaq .wide{position:relative}
+.urpaq .label{color:#E6C473}
+.urpaq .sec-title{color:#F3EBD2}
+.urpaq .sec-lead{color:#B9B5A6}
+.tr-scroll{overflow-x:auto;margin-top:40px;padding:8px 0 18px;-webkit-overflow-scrolling:touch;scrollbar-color:#3a3220 transparent}
+.tr{min-width:1040px;display:flex;justify-content:center}
+.tr ul{display:flex;justify-content:center;margin:0;padding:34px 0 0;position:relative;list-style:none}
+.tr > ul{padding-top:0}
+.tr li{position:relative;padding:34px 6px 0;display:flex;flex-direction:column;align-items:center}
+.tr > ul > li{padding-top:0}
+/* connectors: horizontal bar above siblings + vertical stub into each child */
+.tr li::before,.tr li::after{content:"";position:absolute;top:0;width:50%;height:34px;border-top:1px solid var(--ln)}
+.tr li::before{right:50%}
+.tr li::after{left:50%;border-left:1px solid var(--ln)}
+.tr li:only-child::before,.tr li:only-child::after{display:none}
+.tr li:only-child{padding-top:0}
+.tr li:first-child::before,.tr li:last-child::after{border:0}
+.tr li:last-child::before{border-right:1px solid var(--ln);border-radius:0 8px 0 0}
+.tr li:first-child::after{border-radius:8px 0 0 0}
+.tr > ul > li::before,.tr > ul > li::after{display:none}
+.tr ul ul::before{content:"";position:absolute;top:0;left:50%;height:34px;border-left:1px solid var(--ln)}
+.tr{--ln:rgba(230,196,115,.45)}
+.tr li::before,.tr li::after,.tr ul ul::before{transform-origin:top;transition:transform .6s ease var(--dl,0s),opacity .6s ease var(--dl,0s)}
+.urpaq:not(.in) .tr li::before,.urpaq:not(.in) .tr li::after,.urpaq:not(.in) .tr ul ul::before{transform:scaleY(0);opacity:0}
+.nd{position:relative;min-width:132px;padding:14px 16px 12px;border-radius:14px;text-align:center;
+  background:linear-gradient(180deg,#24211a,#17150f);border:1px solid rgba(230,196,115,.38);
+  box-shadow:inset 0 1px 0 rgba(255,231,166,.18),0 10px 30px -18px rgba(0,0,0,.9);
+  transition:transform .6s cubic-bezier(.2,.7,.2,1) var(--dl,0s),opacity .6s ease var(--dl,0s),box-shadow .3s}
+.nd::before{content:"";position:absolute;left:12px;right:12px;top:-1px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#E6C473,transparent);opacity:.7}
+.urpaq:not(.in) .nd{opacity:0;transform:translateY(14px) scale(.96)}
+.nd:hover{box-shadow:inset 0 1px 0 rgba(255,231,166,.25),0 0 24px -4px rgba(230,196,115,.45)}
+.nd b{display:block;font-family:var(--display);font-size:22px;font-weight:700;color:#E8C778;line-height:1.1}
+.nd i{display:block;margin-top:4px;font-family:var(--body);font-size:13px;color:#A9A596}
+.nd sup{position:absolute;top:8px;right:10px;font-family:var(--util);font-size:11px;color:#6f6a58;font-variant-numeric:lining-nums}
+.nd.root{min-width:190px;padding:18px 22px 14px;box-shadow:inset 0 1px 0 rgba(255,231,166,.25),0 0 40px -6px rgba(230,196,115,.35)}
+.nd.root b{font-size:30px;color:#F1D480}
+.nd.son{min-width:170px}.nd.son b{font-size:25px}
+.nd.leaf{min-width:118px;padding:12px 12px 10px}.nd.leaf b{font-size:19px}
+.brothers{display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:12px}
+.brothers small{font-family:var(--util);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8E8B7F}
+.brothers div{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;max-width:300px}
+.brothers span{font-family:var(--body);font-size:14px;color:#CFC6AE;border:1px solid rgba(230,196,115,.25);border-radius:8px;padding:3px 10px;background:rgba(255,255,255,.02)}
+.tr-hint{display:none;margin-top:6px;font-family:var(--util);font-size:13px;color:#8E8B7F;text-align:center}
+@media (max-width:1060px){.tr-hint{display:block}}
+@media (max-width:700px){.tr{min-width:820px}.nd{min-width:100px;padding:10px 10px 8px}.nd b{font-size:18px}.nd i{font-size:11px}.nd.son{min-width:120px}.nd.son b{font-size:21px}.nd.root b{font-size:25px}.nd.leaf{min-width:88px;padding:9px 8px 8px}.nd.leaf b{font-size:16px}.tr li{padding-left:4px;padding-right:4px}}
+@media (prefers-reduced-motion:reduce){.urpaq .nd,.urpaq .tr li::before,.urpaq .tr li::after,.urpaq .tr ul ul::before{transition:none}}
+
 /* Roots / family tree */
 .tree{margin-top:36px;display:grid;justify-items:center;gap:0}
 .gen{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative}
@@ -443,39 +493,89 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <svg class="shz-tamga" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M32 10v40M22 20h20M14 36c2 10 9 16 18 16s16-6 18-16"/><circle cx="32" cy="8" r="3" fill="currentColor"/></svg>
     <div class="shz-rail" aria-hidden="true"><span id="shz-bar"></span><em class="a">Бүгін</em><em class="b">Алаш</em></div>
     <div class="shz-card" id="shz-card" aria-live="polite">
-      <div class="top"><span class="g">1</span><span>поколение</span></div>
+      <div class="top"><span class="g">20</span><span>поколение</span></div>
       <span class="nm">Әсет</span>
       <span class="y" hidden></span>
       <span class="nt" hidden></span>
       <span class="jt">жеті ата</span>
     </div>
     <ol class="shz-list" id="shz-list" aria-label="Шежіре: 20 поколений">
-      <li data-gen="1" data-jeti="1"><span class="n">Әсет</span> <span class="d">внук Әліби-ата, сын Кайрата</span></li>
-      <li data-gen="2" data-jeti="1"><span class="n">Қайрат</span> <span class="d">сын Әліби-ата, меценат: построил в Карабутаке парк имени отца</span></li>
-      <li data-gen="3" data-years="1932–2018" data-jeti="1" data-hero="1"><span class="n">Әліби</span> <span class="d">директор совхоза, депутат, автор книги «Бабамнан қалған байтағым»</span></li>
-      <li data-gen="4" data-years="1885–1972" data-jeti="1"><span class="n">Қойлыбай</span> <span class="d">знатный просовод, кормилец голодных лет</span></li>
-      <li data-gen="5" data-jeti="1"><span class="n">Отар</span> <span class="d">аульный старшина (ауылнай) в царское время</span></li>
-      <li data-gen="6" data-jeti="1"><span class="n">Күнәш</span></li>
-      <li data-gen="7" data-jeti="1"><span class="n">Жуас</span></li>
-      <li data-gen="8" data-jeti="1"><span class="n">Танас</span> <span class="d">седьмой предок — граница «жеті ата»</span></li>
-      <li data-gen="9"><span class="n">Байтемір</span> <span class="d">по книге, его потомки держали мечеть в Шабагане</span></li>
-      <li data-gen="10"><span class="n">Ағым</span></li>
-      <li data-gen="11"><span class="n">Сүйір</span></li>
-      <li data-gen="12"><span class="n">Амантай</span></li>
-      <li data-gen="13"><span class="n">Құламан</span></li>
-      <li data-gen="14"><span class="n">Ақпан</span></li>
-      <li data-gen="15"><span class="n">Қараш</span> <span class="d">один из четырёх сыновей Қарамашақа — «Төрт Қара»</span></li>
-      <li data-gen="16"><span class="n">Қарамашақ</span> <span class="d">отец четырёх сыновей, от которых пошёл род Төртқара</span></li>
-      <li data-gen="17"><span class="n">Әлімұлы</span> <span class="d">объединение родов Младшего жуза</span></li>
-      <li data-gen="18"><span class="n">Қайырбай-Қарақесек</span></li>
-      <li data-gen="19"><span class="n">Кіші жүз</span> <span class="d">Младший жуз</span></li>
-      <li data-gen="20"><span class="n">Алаш</span> <span class="d">прародитель всех казахов</span></li>
+      <li data-gen="20" data-jeti="1"><span class="n">Әсет</span> <span class="d">внук Әліби-ата, сын Кайрата</span></li>
+      <li data-gen="19" data-jeti="1"><span class="n">Қайрат</span> <span class="d">сын Әліби-ата, меценат: построил в Карабутаке парк имени отца</span></li>
+      <li data-gen="18" data-years="1932–2018" data-jeti="1" data-hero="1"><span class="n">Әліби</span> <span class="d">директор совхоза, депутат, автор книги «Бабамнан қалған байтағым»</span></li>
+      <li data-gen="17" data-years="1885–1972" data-jeti="1"><span class="n">Қойлыбай</span> <span class="d">знатный просовод, кормилец голодных лет</span></li>
+      <li data-gen="16" data-jeti="1"><span class="n">Отар</span> <span class="d">аульный старшина (ауылнай) в царское время</span></li>
+      <li data-gen="15" data-jeti="1"><span class="n">Күнәш</span></li>
+      <li data-gen="14" data-jeti="1"><span class="n">Жуас</span></li>
+      <li data-gen="13" data-jeti="1"><span class="n">Танас</span> <span class="d">седьмой предок — граница «жеті ата»</span></li>
+      <li data-gen="12"><span class="n">Байтемір</span> <span class="d">по книге, его потомки держали мечеть в Шабагане</span></li>
+      <li data-gen="11"><span class="n">Ағым</span></li>
+      <li data-gen="10"><span class="n">Сүйір</span></li>
+      <li data-gen="9"><span class="n">Амантай</span></li>
+      <li data-gen="8"><span class="n">Құламан</span></li>
+      <li data-gen="7"><span class="n">Ақпан</span></li>
+      <li data-gen="6"><span class="n">Қараш</span> <span class="d">один из четырёх сыновей Қарамашақа — «Төрт Қара»</span></li>
+      <li data-gen="5"><span class="n">Қарамашақ</span> <span class="d">отец четырёх сыновей, от которых пошёл род Төртқара</span></li>
+      <li data-gen="4"><span class="n">Әлімұлы</span> <span class="d">объединение родов Младшего жуза</span></li>
+      <li data-gen="3"><span class="n">Қайырбай-Қарақесек</span></li>
+      <li data-gen="2"><span class="n">Кіші жүз</span> <span class="d">Младший жуз</span></li>
+      <li data-gen="1"><span class="n">Алаш</span> <span class="d">прародитель всех казахов</span></li>
     </ol>
     <p class="shz-src">Шежіре: Әлімұлы · Кіші жүз · shejire.ai, 2026</p>
   </div>
 </section>
 <script src="js/three.min.js" defer></script>
 <script src="js/shezhire.js" defer></script>
+
+<!-- ============ DESCENDANTS ============ -->
+<section class="urpaq" id="urpaq">
+  <div class="wide">
+    <div class="rv">
+      <p class="label">Ұрпақтары</p>
+      <h2 class="sec-title">Потомки Әліби-ата</h2>
+      <p class="sec-lead">Мужская линия рода от Әліби-ата: сыновья, внуки и правнуки. Цифра в углу — номер поколения от Алаша.</p>
+    </div>
+    <div class="tr-scroll">
+      <div class="tr" role="tree" aria-label="Потомки Әліби-ата">
+        <ul>
+          <li><div class="nd root" style="--dl:0.00s"><sup>18</sup><b>Әліби</b> <i>1932–2018</i></div>
+            <div class="brothers" style="--dl:.2s"><small>Ағайындары</small><div><span>Қали</span><span>Ағытай</span><span>Тәбілбай</span><span>Байжан</span><span>Лайық</span></div></div>
+            <ul>
+              <li style="--dl:.35s"><div class="nd son" style="--dl:0.40s"><sup>19</sup><b>Асқар</b> <i>старший сын</i></div>
+                <ul>
+                  <li style="--dl:.7s"><div class="nd " style="--dl:0.75s"><sup>20</sup><b>Тимур</b> <i>сын Аскара</i></div>
+                    <ul>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.10s"><sup>21</sup><b>Санжар</b> <i>сын</i></div></li>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.15s"><sup>21</sup><b>Арыстан</b> <i>сын</i></div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li style="--dl:.35s"><div class="nd son" style="--dl:0.45s"><sup>19</sup><b>Қайрат</b> <i>младший сын</i></div>
+                <ul>
+                  <li style="--dl:.7s"><div class="nd " style="--dl:0.80s"><sup>20</sup><b>Әсет</b> <i>старший сын Кайрата</i></div>
+                    <ul>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.20s"><sup>21</sup><b>Дамир</b> <i>старший сын</i></div></li>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.25s"><sup>21</sup><b>Сұлтан</b> <i>средний сын</i></div></li>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.30s"><sup>21</sup><b>Батыр</b> <i>младший сын</i></div></li>
+                    </ul>
+                  </li>
+                  <li style="--dl:.7s"><div class="nd " style="--dl:0.85s"><sup>20</sup><b>Арсен</b> <i>младший сын Кайрата</i></div>
+                    <ul>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.35s"><sup>21</sup><b>Дани</b> <i>старший сын</i></div></li>
+                      <li style="--dl:1.05s"><div class="nd leaf" style="--dl:1.40s"><sup>21</sup><b>Бари</b> <i>младший сын</i></div></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="tr-hint">← листайте схему в сторону →</p>
+  </div>
+</section>
 
 <!-- ============ ROOTS ============ -->
 <section class="wide block" id="roots">
@@ -916,6 +1016,10 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     v.addEventListener('play',function(){document.dispatchEvent(new CustomEvent('film-play'));});
   }
 
+  // Descendants tree: start the scroller centred on Alibi-ata
+  var trs=document.querySelector('.tr-scroll');
+  if(trs){var centre=function(){trs.scrollLeft=(trs.scrollWidth-trs.clientWidth)/2;};centre();window.addEventListener('load',centre);}
+
   // Lightbox
   var lb=document.getElementById('lb'),lbImg=lb.querySelector('img');
   document.querySelectorAll('.clip').forEach(function(c){
@@ -929,7 +1033,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
 
   // Reveal
-  var els=document.querySelectorAll('.rv, .band');
+  var els=document.querySelectorAll('.rv, .band, .urpaq');
   if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
   els.forEach(function(e){io.observe(e)});
