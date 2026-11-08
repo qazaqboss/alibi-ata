@@ -296,6 +296,16 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .amanat .main-q::before{content:"«";color:#E6C473}
 .amanat .main-q::after{content:"»";color:#E6C473}
 .amanat .who{margin-top:14px;font-family:var(--util);font-size:15px;color:#A9A596}
+.say-all{display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-family:var(--util);font-size:15px;letter-spacing:.06em;color:#0b1116;background:#E6C473;border:0;border-radius:999px;padding:10px 20px 10px 14px;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.say-all:hover{transform:translateY(-1px);box-shadow:0 8px 24px -8px rgba(230,196,115,.6)}
+.say-all svg,.say svg{width:18px;height:18px;flex:none}
+.say{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:var(--util);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:#E6C473;background:none;border:1px solid rgba(230,196,115,.35);border-radius:999px;padding:5px 12px 5px 8px;cursor:pointer}
+.say:hover{border-color:#E6C473}
+.say .ic-pause,.playing .say .ic-play,.say-all.playing .ic-play{display:none}
+.playing .say .ic-pause,.say-all.playing .ic-pause{display:inline}
+.say-all .ic-pause{display:none}
+.quotes figure.playing,.amanat .main-wrap.playing .main-q{border-color:#E6C473;box-shadow:0 0 0 1px rgba(230,196,115,.5),0 0 40px -10px rgba(230,196,115,.5)}
+.amanat .voice-note{margin-top:10px;font-family:var(--util);font-size:13px;color:#8E8B7F}
 .quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px;margin-top:44px}
 .quotes figure{margin:0;border:1px solid rgba(230,196,115,.25);border-radius:6px;padding:22px 24px;background:rgba(255,255,255,.025)}
 .quotes blockquote{margin:0;font-size:17px;line-height:1.6;color:#E6E0CE}
@@ -797,19 +807,22 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <h2 class="sec-title">Әліби атаның аманаты</h2>
       <p class="sec-lead">Кітабын ол жастарға, «болашаққа енді ғана ұмтылып келе жатқан ұрпаққа» арнады. Төмендегі сөздер «Бабамнан қалған байтағым» кітабынан алынды: олар кітаптың орысша аудармасынан қайта қазақшаланғандықтан, түпнұсқадағы сөздерден сәл өзгеше болуы мүмкін.</p>
     </div>
-    <p class="main-q rv">Ата-баба ізі қалған осы өлкені қайта гүлдендіріп, олардың даңқына лайық ұрпақтың қолына тапсыру — бүгінгі жерлестерімді толғандыруға тиіс мәселе осы.</p>
+    <div class="main-wrap" data-n="00"><p class="main-q rv">Ата-баба ізі қалған осы өлкені қайта гүлдендіріп, олардың даңқына лайық ұрпақтың қолына тапсыру — бүгінгі жерлестерімді толғандыруға тиіс мәселе осы.</p>
     <p class="who rv">— Кітаптың қорытындысынан</p>
+    <button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></div>
+    <button class="say-all" id="say-all" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Аманатты толық тыңдау</span></button>
+    <p class="voice-note">Дикторлық дауысты нейрожелі жасаған (VoiceStudio / OmniVoice) — бұл Әліби атаның өз дауысы емес.</p>
 
     <div class="quotes">
-      <figure class="rv"><blockquote>Адамнан із қалады. Адамнан ұрпақ қалады, жақсы өнеге қалады, бітірген істері мен өзі жете алмаған арман-мақсаттары қалады.</blockquote><figcaption>Өмірдің мәні туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Еліміздің әр ауылы мен ауданы, әр төбесі, бұлағы, құдығы, тіпті шөл даласы үшін бәріміз жауаптымыз.</blockquote><figcaption>Туған жер туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Мұның бәрі өзіңді, ұлтыңды, туған жеріңді, оның кешегісі мен бүгінін толық білуден басталады. Онсыз адамда не қалады? Ештеңе.</blockquote><figcaption>Тарихты білу туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Қазақстан Республикасы деген мемлекет әлем картасынан заңды орнын алғанына жиырма жыл толды. Бұл — бақыт. Осы бақытты ұстап қалу — барша ұрпағымыздың ұлы парызы.</blockquote><figcaption>Тәуелсіздік туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Өмірдің мәні тек қарын тойдырып, етек жабуда емес. Рухтың саулығы, сананың тұтастығы, ұлттың намысы да азаматтың иығына жауапкершілік жүгін артады.</blockquote><figcaption>Намыс туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Өткен тарихтағы саясаттың түрлі боранына халық, қарапайым адамдар кінәлі емес. Сондықтан өткенге топырақ шашудың қажеті жоқ.</blockquote><figcaption>Өткен туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Еңбек мені адамгершілікке, саналылыққа тәрбиеледі, талай биікке көтерді.</blockquote><figcaption>Еңбек туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Адам үшін туған халқының құрметінен асқан абырой жоқ.</blockquote><figcaption>Абырой туралы</figcaption></figure>
-      <figure class="rv"><blockquote>Қазақ даласындағы әр ауылдың тарихы жиналуы керек. Сонда ғана ұрпақ ата-баба мекенін, оның киесін қадірлейді.</blockquote><figcaption>Жад туралы</figcaption></figure>
+      <figure class="rv" data-n="01"><blockquote>Адамнан із қалады. Адамнан ұрпақ қалады, жақсы өнеге қалады, бітірген істері мен өзі жете алмаған арман-мақсаттары қалады.</blockquote><figcaption>Өмірдің мәні туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="02"><blockquote>Еліміздің әр ауылы мен ауданы, әр төбесі, бұлағы, құдығы, тіпті шөл даласы үшін бәріміз жауаптымыз.</blockquote><figcaption>Туған жер туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="03"><blockquote>Мұның бәрі өзіңді, ұлтыңды, туған жеріңді, оның кешегісі мен бүгінін толық білуден басталады. Онсыз адамда не қалады? Ештеңе.</blockquote><figcaption>Тарихты білу туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="04"><blockquote>Қазақстан Республикасы деген мемлекет әлем картасынан заңды орнын алғанына жиырма жыл толды. Бұл — бақыт. Осы бақытты ұстап қалу — барша ұрпағымыздың ұлы парызы.</blockquote><figcaption>Тәуелсіздік туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="05"><blockquote>Өмірдің мәні тек қарын тойдырып, етек жабуда емес. Рухтың саулығы, сананың тұтастығы, ұлттың намысы да азаматтың иығына жауапкершілік жүгін артады.</blockquote><figcaption>Намыс туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="06"><blockquote>Өткен тарихтағы саясаттың түрлі боранына халық, қарапайым адамдар кінәлі емес. Сондықтан өткенге топырақ шашудың қажеті жоқ.</blockquote><figcaption>Өткен туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="07"><blockquote>Еңбек мені адамгершілікке, саналылыққа тәрбиеледі, талай биікке көтерді.</blockquote><figcaption>Еңбек туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="08"><blockquote>Адам үшін туған халқының құрметінен асқан абырой жоқ.</blockquote><figcaption>Абырой туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
+      <figure class="rv" data-n="09"><blockquote>Қазақ даласындағы әр ауылдың тарихы жиналуы керек. Сонда ғана ұрпақ ата-баба мекенін, оның киесін қадірлейді.</blockquote><figcaption>Жад туралы</figcaption><button class="say" type="button"><svg class="ic-play" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg><svg class="ic-pause" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z"/></svg><span>Тыңдау</span></button></figure>
     </div>
   </div>
 </section>
@@ -1034,6 +1047,27 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   // Descendants tree: start the scroller centred on Alibi-ata
   var trs=document.querySelector('.tr-scroll');
   if(trs){var centre=function(){trs.scrollLeft=(trs.scrollWidth-trs.clientWidth)/2;};centre();window.addEventListener('load',centre);}
+
+  // Narration of the book fragments (Amanat). Files: audio/amanat/<lang>-<nn>.mp3
+  (function(){
+    var lang=document.documentElement.lang==='kk'?'kk':'ru';
+    var cards=[].slice.call(document.querySelectorAll('.amanat [data-n]'));
+    if(!cards.length)return;
+    var audio=new Audio(),cur=null,queue=null,allBtn=document.getElementById('say-all');
+    audio.preload='none';
+    function mark(el){cards.forEach(function(c){c.classList.toggle('playing',c===el)});}
+    function stop(){audio.pause();mark(null);cur=null;queue=null;allBtn.classList.remove('playing');}
+    function play(el){cur=el;audio.src='audio/amanat/'+lang+'-'+el.dataset.n+'.mp3';audio.play().catch(stop);mark(el);}
+    audio.addEventListener('ended',function(){
+      if(queue&&queue.length){var nx=queue.shift();play(nx);nx.scrollIntoView({block:'center',behavior:'smooth'});}
+      else stop();});
+    cards.forEach(function(el){el.querySelector('.say').addEventListener('click',function(){
+      if(cur===el&&!audio.paused){stop();return;}queue=null;allBtn.classList.remove('playing');play(el);});});
+    allBtn.addEventListener('click',function(){
+      if(queue||(!audio.paused&&allBtn.classList.contains('playing'))){stop();return;}
+      queue=cards.slice(1);allBtn.classList.add('playing');play(cards[0]);});
+    document.addEventListener('film-play',stop);
+  })();
 
   // Lightbox
   var lb=document.getElementById('lb'),lbImg=lb.querySelector('img');
