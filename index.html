@@ -154,6 +154,7 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .shz-card .jt{display:none;margin-top:10px;font-family:var(--util);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#0b1116;background:#E6C473;border-radius:999px;padding:2px 10px}
 .shz-card.jeti .jt{display:inline-block}
 .shz-card.flip{animation:shzflip .45s ease}
+@media (min-width:701px){.shz-card.crown{right:auto;left:max(48px,calc((100vw - 1100px)/2 + 48px))}}
 @keyframes shzflip{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
 .shz-rail{position:absolute;left:max(16px,calc((100vw - 1100px)/2 + 16px));top:46vh;bottom:12vh;width:2px;background:rgba(236,230,212,.15)}
 .shz-rail span{position:absolute;inset:0;background:linear-gradient(#E6C473,#8FB9D4);transform-origin:top;transform:scaleY(0)}
@@ -500,14 +501,14 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <div class="shz-labels" id="shz-labels" aria-hidden="true"></div>
     <div class="shz-head">
       <p class="label">Шежіре · 21 ұрпақ</p>
-      <h2 id="shz-title">От правнуков до Алаша</h2>
-      <p>Двадцать одно поколение рода Әлімұлы. Наверху — потомки Әліби-ата; листайте вниз и спуститесь к самым корням, к Алашу. Золотом отмечены «жеті ата».</p>
+      <h2 id="shz-title">От Алаша до правнуков</h2>
+      <p>Двадцать одно поколение рода Әлімұлы. Листайте вниз: от Алаша, прародителя всех казахов, — к Әліби-ата и его потомкам. Золотом отмечены «жеті ата».</p>
     </div>
     <svg class="shz-tamga" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M32 10v40M22 20h20M14 36c2 10 9 16 18 16s16-6 18-16"/><circle cx="32" cy="8" r="3" fill="currentColor"/></svg>
-    <div class="shz-rail" aria-hidden="true"><span id="shz-bar"></span><em class="a">Бүгін</em><em class="b">Алаш</em></div>
+    <div class="shz-rail" aria-hidden="true"><span id="shz-bar"></span><em class="a">Алаш</em><em class="b">Бүгін</em></div>
     <div class="shz-card" id="shz-card" aria-live="polite">
-      <div class="top"><span class="g">20</span><span>поколение</span></div>
-      <span class="nm">Әсет</span>
+      <div class="top"><span class="g">1</span><span>поколение</span></div>
+      <span class="nm">Алаш</span>
       <span class="y" hidden></span>
       <span class="nt" hidden></span>
       <span class="jt">жеті ата</span>

@@ -1,8 +1,8 @@
-/* Shezhire: 20 generations as a glowing 3D helix (three.js r128), with the
-   descendants of Alibi-ata as a gold "crown" above the main line.
+/* Shezhire: 20 generations as a glowing 3D helix (three.js r128), from Alash at
+   the top down to Alibi-ata, whose descendants hang below as a gold crown.
    Data comes from the <ol id="shz-list"> markup so both languages share this file.
-   Scrolling through the section moves the camera from the youngest generation
-   down to the root (Alash). Falls back to the plain list without WebGL. */
+   Scrolling through the section moves the camera from Alash down to the
+   youngest generation. Falls back to the plain list without WebGL. */
 (function () {
   var sec = document.getElementById('shezhire');
   var list = document.getElementById('shz-list');
@@ -38,10 +38,12 @@
   scene.fog = new T.FogExp2(0x0b1116, 0.032);
   var camera = new T.PerspectiveCamera(42, 1, 0.1, 200);
 
-  // --- layout: helix, youngest at top (y = 0), root at the bottom
+  // --- layout: Alash (generation 1) at the top, each generation one step lower
   var STEP = 1.55, R = 3.1, TURN = 0.78;
-  function pos(i) { return new T.Vector3(Math.cos(i * TURN) * R, -i * STEP, Math.sin(i * TURN) * R); }
-  var pts = items.map(function (_, i) { return pos(i); });
+  function lv(gen) { return gen - 1; }                       // helix level of a generation
+  function pos(l) { return new T.Vector3(Math.cos(l * TURN) * R, -l * STEP, Math.sin(l * TURN) * R); }
+  var pts = items.map(function (it) { return pos(lv(it.gen)); });
+  var LAST = 20.0;                                            // camera travels from Alash (0) to below the crown
 
   // soft glow texture
   function glowTex(inner, outer) {
@@ -56,7 +58,7 @@
   var texCool = glowTex('rgba(190,215,235,0.9)', 'rgba(143,185,212,0)');
 
   // main thread through the generations
-  var curve = new T.CatmullRomCurve3(pts);
+  var curve = new T.CatmullRomCurve3(pts.slice().sort(function (a, b) { return b.y - a.y; }));
   var tube = new T.Mesh(new T.TubeGeometry(curve, 400, 0.035, 8, false),
     new T.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.55 }));
   scene.add(tube);
@@ -69,7 +71,7 @@
     rungs.add(new T.Line(g, new T.LineBasicMaterial({ color: SKY, transparent: true, opacity: 0.16 })));
   }
   scene.add(rungs);
-  scene.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(strand2), 300, 0.018, 6, false),
+  scene.add(new T.Mesh(new T.TubeGeometry(new T.CatmullRomCurve3(strand2.sort(function (a, b) { return b.y - a.y; })), 300, 0.018, 6, false),
     new T.MeshBasicMaterial({ color: SKY, transparent: true, opacity: 0.25 })));
 
   // nodes
@@ -92,17 +94,17 @@
   var labelBox = document.getElementById('shz-labels');
   // --- crown: sons, grandsons and great-grandsons of Alibi-ata
   var byName = {};
-  items.forEach(function (it, i) { byName[it.name] = { p: pts[i], ang: i * TURN, lvl: i }; });
+  items.forEach(function (it, i) { byName[it.name] = { p: pts[i], ang: lv(it.gen) * TURN, lvl: lv(it.gen) }; });
   // angle for each branch node, chosen so the crown fans out around the helix
   var ANG = { 'Асқар': TURN + 2.6, 'Тимур': TURN + 2.1, 'Арсен': 2 * TURN,
               'Дамир': -0.62, 'Сұлтан': 0, 'Батыр': 0.62, 'Дани': 2 * TURN - 0.36, 'Бари': 2 * TURN + 0.36,
               'Санжар': TURN + 1.72, 'Арыстан': TURN + 2.5 };
+  Object.keys(ANG).forEach(function (k) { ANG[k] = 19 * TURN - ANG[k]; });
   var bNodes = [], bLabels = [], bLevels = [];
-  var LEVEL = { 19: 1, 20: 0, 21: -1 };           // helix index level (y = -level*STEP)
   branch.forEach(function (b, k) {
-    var lvl = LEVEL[b.gen], ang = ANG[b.name] != null ? ANG[b.name] : k;
+    var lvl = lv(b.gen), ang = ANG[b.name] != null ? ANG[b.name] : k;
     var rad = b.gen === 21 ? R * 1.4 : R;
-    var lift = b.gen === 21 ? (k % 2 ? 0.45 : -0.15) : 0;      // stagger the top row so labels don't collide
+    var lift = b.gen === 21 ? (k % 2 ? -0.45 : 0.15) : 0;      // stagger the top row so labels don't collide
     var p3 = new T.Vector3(Math.cos(ang) * rad, -lvl * STEP + lift, Math.sin(ang) * rad);
     byName[b.name] = { p: p3, ang: ang, lvl: lvl };
     var size = b.gen === 21 ? 0.11 : 0.14;
@@ -119,22 +121,22 @@
   // gold arcs from each parent to its child
   branch.forEach(function (b) {
     var P = byName[b.parent], C = byName[b.name]; if (!P || !C) return;
-    var mid = P.p.clone().add(C.p).multiplyScalar(0.5); mid.y += STEP * 0.35;
+    var mid = P.p.clone().add(C.p).multiplyScalar(0.5); mid.y -= STEP * 0.35;
     var arc = new T.QuadraticBezierCurve3(P.p.clone(), mid, C.p.clone());
     scene.add(new T.Mesh(new T.TubeGeometry(arc, 40, 0.022, 6, false),
       new T.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.5 })));
   });
 
   // jeti ata boundary disc (between gen 8 and 9)
-  var jetiIdx = items.reduce(function (k, it, i) { return it.jeti ? i : k; }, 0);
+  var jetiGen = items.reduce(function (g, it) { return it.jeti ? Math.min(g, it.gen) : g; }, 99);
   var disc = new T.Mesh(new T.RingGeometry(R + 0.6, R + 0.64, 96), new T.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.35, side: T.DoubleSide }));
-  disc.rotation.x = -Math.PI / 2; disc.position.y = -(jetiIdx + 0.5) * STEP; scene.add(disc);
+  disc.rotation.x = -Math.PI / 2; disc.position.y = -(lv(jetiGen) - 0.5) * STEP; scene.add(disc);
 
   // dust / stars
   var N = 900, sp = new Float32Array(N * 3);
   for (var k = 0; k < N; k++) {
     var rr = 4 + Math.random() * 18, th = Math.random() * Math.PI * 2;
-    sp[k * 3] = Math.cos(th) * rr; sp[k * 3 + 1] = 4 - Math.random() * (items.length * STEP + 12); sp[k * 3 + 2] = Math.sin(th) * rr;
+    sp[k * 3] = Math.cos(th) * rr; sp[k * 3 + 1] = 6 - Math.random() * ((LAST + 2) * STEP + 12); sp[k * 3 + 2] = Math.sin(th) * rr;
   }
   var sg = new T.BufferGeometry(); sg.setAttribute('position', new T.BufferAttribute(sp, 3));
   var stars = new T.Points(sg, new T.PointsMaterial({ color: 0xd9c38a, size: 1.6, sizeAttenuation: false, transparent: true, opacity: 0.6, depthWrite: false }));
@@ -160,10 +162,11 @@
       cGen.textContent = '18–21';
       cName.textContent = crownInfo.querySelector('.nm').textContent;
       cNote.textContent = crownInfo.querySelector('.nt').textContent; cNote.hidden = false;
-      cYears.hidden = true; card.classList.remove('jeti');
+      cYears.hidden = true; card.classList.remove('jeti'); card.classList.add('crown');
       card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
       return;
     }
+    card.classList.remove('crown');
     var it = items[i];
     cGen.textContent = it.gen;
     cName.textContent = it.name;
@@ -197,14 +200,15 @@
   function frame() {
     var t = clock.getElapsedTime();
     smooth += (prog - smooth) * (reduce ? 1 : 0.08);
-    var F0 = -1.3, f = F0 + smooth * (items.length - 1 - F0);   // fractional helix index (negative = crown)
-    var y = -f * STEP;
+    var f = smooth * LAST;                                      // fractional helix level
+    var ft = Math.min(f, 18.9), y = -ft * STEP;                  // the camera parks on the crown
     var ang = f * TURN + (reduce ? 0 : t * 0.05);
-    var dist = (W < 700 ? 15.5 : 12.5) + Math.max(0, 1.2 - f) * (W < 700 ? 3 : 2.2);
+    var dist = (W < 700 ? 15.5 : 12.5) + Math.max(0, f - 18.8) * (W < 700 ? 3 : 2.2);
     camera.position.set(Math.cos(ang) * dist, y + 2.4, Math.sin(ang) * dist);
-    camera.lookAt(W < 700 ? 0 : -1.2, y - 0.8, 0);
+    var cr = Math.min(1, Math.max(0, f - 18.2));                 // 0..1 while arriving at the crown
+    camera.lookAt((W < 700 ? 0 : -1.2) + cr * (W < 700 ? 2.0 : 6.0), y - 0.8 + Math.max(0, f - 18.2) * 0.9, 0);
 
-    var near = f < -0.55 ? -1 : Math.max(0, Math.round(f));
+    var nearLv = Math.round(f), near = f > 19.55 ? -1 : items.findIndex(function (it) { return lv(it.gen) === Math.min(19, nearLv); });
     bNodes.forEach(function (m, k) {
       var d = Math.abs(bLevels[k] - f);
       m.scale.setScalar(1 + (reduce ? 0 : Math.sin(t * 2.2 + k) * 0.06));
@@ -214,7 +218,7 @@
       L.style.transform = 'translate(' + ((tmp.x * 0.5 + 0.5) * W).toFixed(1) + 'px,' + ((-tmp.y * 0.5 + 0.5) * H).toFixed(1) + 'px)';
     });
     nodes.forEach(function (m, i) {
-      var d = Math.abs(i - f), s = 1 + Math.max(0, 1 - d) * 0.45 + (reduce ? 0 : Math.sin(t * 2 + i) * 0.04);
+      var d = Math.abs(lv(items[i].gen) - f), s = 1 + Math.max(0, 1 - d) * 0.45 + (reduce ? 0 : Math.sin(t * 2 + i) * 0.04);
       m.scale.setScalar(s);
       if (m.userData.ring) { m.userData.ring.rotation.x = t * 0.8; m.userData.ring.rotation.y = t * 0.5; }
       // label projection
@@ -243,6 +247,6 @@
     var li = e.target.closest('li'); if (!li) return;
     var i = items.findIndex(function (it) { return it.gen === +li.dataset.gen; });
     var span = sec.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: sec.offsetTop + span * (i + 1.3) / (items.length - 1 + 1.3), behavior: reduce ? 'auto' : 'smooth' });
+    window.scrollTo({ top: sec.offsetTop + span * lv(items[i].gen) / LAST, behavior: reduce ? 'auto' : 'smooth' });
   });
 })();
