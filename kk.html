@@ -126,6 +126,57 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .film-bar a{margin-left:auto;color:var(--sky)}
 .film-note{margin-top:14px;color:var(--muted);font-size:16px;max-width:46em}
 
+/* Shezhire 3D */
+.shz{position:relative;height:340vh;background:#0b1116;color:#ECE6D4;margin-top:clamp(64px,9vw,110px)}
+.shz-stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.shz-stick::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(230,196,115,.10),transparent 60%),radial-gradient(ellipse at 50% 120%,rgba(36,80,108,.45),transparent 60%);pointer-events:none}
+#shz-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.shz-labels{position:absolute;inset:0;pointer-events:none}
+.shz-label{position:absolute;left:0;top:0;white-space:nowrap;font-family:var(--util);font-size:14px;letter-spacing:.06em;color:#cdbf98;transition:opacity .2s;margin:-10px 0 0 18px;text-shadow:0 1px 6px #000}
+.shz-label i{font-style:normal;color:#8E8B7F;margin-right:6px;font-size:12px;font-variant-numeric:lining-nums}
+.shz-label b{font-family:var(--display);font-size:20px;font-weight:600}
+.shz-label.jeti b{color:#F1D480}
+.shz-label.shz-hero b{font-size:26px;color:#FFE7A6}
+.shz-label.on b{font-size:26px}
+.shz-head{position:absolute;left:0;right:0;top:0;padding:86px var(--gut) 0;max-width:1100px;margin:0 auto;pointer-events:none;z-index:1}
+.shz-stick::after{content:"";position:absolute;left:0;right:0;top:0;height:330px;background:linear-gradient(#0b1116 35%,rgba(11,17,22,0));pointer-events:none}
+.shz-head .label{color:#E6C473}
+.shz-head h2{font-size:clamp(34px,5vw,52px);margin-top:6px;color:#F3EBD2}
+.shz-head p{margin-top:10px;color:#B9B5A6;max-width:30em;font-size:16px}
+.shz-card{position:absolute;right:max(16px,calc((100vw - 1100px)/2 + 16px));bottom:9vh;width:min(320px,calc(100vw - 32px));padding:18px 20px;border:1px solid rgba(230,196,115,.35);border-radius:10px;background:rgba(11,17,22,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.shz-card .top{display:flex;align-items:baseline;gap:10px;font-family:var(--util);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#A9A596}
+.shz-card .g{font-family:var(--display);font-size:40px;line-height:1;color:#E6C473;letter-spacing:0;font-variant-numeric:lining-nums}
+.shz-card .nm{display:block;margin-top:6px;font-family:var(--display);font-size:34px;line-height:1.05;font-weight:600;color:#F3EBD2}
+.shz-card .y{display:block;margin-top:4px;font-family:var(--util);color:#E6C473}
+.shz-card .nt{display:block;margin-top:8px;font-size:15px;line-height:1.5;color:#C9C3B2}
+.shz-card .jt{display:none;margin-top:10px;font-family:var(--util);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#0b1116;background:#E6C473;border-radius:999px;padding:2px 10px}
+.shz-card.jeti .jt{display:inline-block}
+.shz-card.flip{animation:shzflip .45s ease}
+@keyframes shzflip{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+.shz-rail{position:absolute;left:max(16px,calc((100vw - 1100px)/2 + 16px));top:46vh;bottom:12vh;width:2px;background:rgba(236,230,212,.15)}
+.shz-rail span{position:absolute;inset:0;background:linear-gradient(#E6C473,#8FB9D4);transform-origin:top;transform:scaleY(0)}
+.shz-rail em{position:absolute;left:10px;font-style:normal;font-family:var(--util);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#A9A596;white-space:nowrap}
+.shz-rail em.a{top:-4px}.shz-rail em.b{bottom:-4px}
+.shz-tamga{position:absolute;right:max(16px,calc((100vw - 1100px)/2 + 16px));top:86px;width:54px;height:54px;color:#E6C473;opacity:.9}
+.shz-list{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.shz-src{position:absolute;left:0;right:0;bottom:14px;text-align:center;font-family:var(--util);font-size:12px;letter-spacing:.12em;color:#6f6d64}
+/* fallback without WebGL: plain list */
+.shz.shz-flat{height:auto;padding-bottom:60px}
+.shz.shz-flat .shz-stick{position:relative;height:auto;padding-top:0}
+.shz.shz-flat #shz-canvas,.shz.shz-flat .shz-card,.shz.shz-flat .shz-rail,.shz.shz-flat .shz-labels{display:none}
+.shz.shz-flat .shz-head{position:relative}
+.shz.shz-flat .shz-list{position:static;width:auto;height:auto;clip:auto;max-width:640px;margin:28px auto 0;padding:0 var(--gut);list-style:none;display:grid;gap:8px}
+.shz.shz-flat .shz-list li{border:1px solid rgba(230,196,115,.25);border-radius:6px;padding:8px 14px;display:flex;gap:12px;align-items:baseline}
+.shz.shz-flat .shz-list .n{font-family:var(--display);font-size:20px;color:#F3EBD2}
+.shz.shz-flat .shz-list .d{font-size:14px;color:#A9A596}
+@media (max-width:700px){
+  .shz{height:300vh}
+  .shz-card{bottom:4vh;padding:14px 16px}.shz-card .nm{font-size:28px}.shz-card .g{font-size:32px}
+  .shz-rail{display:none}.shz-tamga{width:40px;height:40px}
+  .shz-head{padding-top:72px}.shz-head p{font-size:15px}
+  .shz-label b{font-size:16px}.shz-label.on b,.shz-label.shz-hero b{font-size:20px}
+}
+
 /* Roots / family tree */
 .tree{margin-top:36px;display:grid;justify-items:center;gap:0}
 .gen{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;position:relative}
@@ -303,7 +354,7 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   <a class="brand" href="#top">Әліби-ата</a>
   <ul>
     <li><a href="#film">Фильм</a></li>
-    <li><a href="#roots">Тамыр</a></li>
+    <li><a href="#shezhire">Шежіре</a></li>
     <li><a href="#story">Өмірі</a></li>
     <li><a href="#amanat">Аманат</a></li>
     <li><a href="#history">Өлке тарихы</a></li>
@@ -379,11 +430,58 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
   </div>
 </section>
 
+<!-- ============ SHEZHIRE 3D ============ -->
+<section class="shz" id="shezhire" aria-labelledby="shz-title">
+  <div class="shz-stick">
+    <canvas id="shz-canvas" aria-hidden="true"></canvas>
+    <div class="shz-labels" id="shz-labels" aria-hidden="true"></div>
+    <div class="shz-head">
+      <p class="label">Шежіре · 20 ұрпақ</p>
+      <h2 id="shz-title">Әсеттен Алашқа дейін</h2>
+      <p>Әлімұлы руының жиырма ұрпағы. Төмен айналдырып, Әліби атаның немересінен ең түпкі тамырға дейін түсіңіз. Алтын түспен «жеті ата» — ең жақын жеті атасы белгіленген.</p>
+    </div>
+    <svg class="shz-tamga" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M32 10v40M22 20h20M14 36c2 10 9 16 18 16s16-6 18-16"/><circle cx="32" cy="8" r="3" fill="currentColor"/></svg>
+    <div class="shz-rail" aria-hidden="true"><span id="shz-bar"></span><em class="a">Бүгін</em><em class="b">Алаш</em></div>
+    <div class="shz-card" id="shz-card" aria-live="polite">
+      <div class="top"><span class="g">1</span><span>ұрпақ</span></div>
+      <span class="nm">Әсет</span>
+      <span class="y" hidden></span>
+      <span class="nt" hidden></span>
+      <span class="jt">жеті ата</span>
+    </div>
+    <ol class="shz-list" id="shz-list" aria-label="Шежіре: 20 ұрпақ">
+      <li data-gen="1" data-jeti="1"><span class="n">Әсет</span> <span class="d">Әліби атаның немересі, Қайраттың ұлы</span></li>
+      <li data-gen="2" data-jeti="1"><span class="n">Қайрат</span> <span class="d">Әліби атаның ұлы, меценат: Қарабұтақта әкесінің атындағы саябақ салды</span></li>
+      <li data-gen="3" data-years="1932–2018" data-jeti="1" data-hero="1"><span class="n">Әліби</span> <span class="d">кеңшар директоры, депутат, «Бабамнан қалған байтағым» кітабының авторы</span></li>
+      <li data-gen="4" data-years="1885–1972" data-jeti="1"><span class="n">Қойлыбай</span> <span class="d">атақты тарышы, ашаршылық жылдардың асыраушысы</span></li>
+      <li data-gen="5" data-jeti="1"><span class="n">Отар</span> <span class="d">патша заманындағы ауылнай</span></li>
+      <li data-gen="6" data-jeti="1"><span class="n">Күнәш</span></li>
+      <li data-gen="7" data-jeti="1"><span class="n">Жуас</span></li>
+      <li data-gen="8" data-jeti="1"><span class="n">Танас</span> <span class="d">жетінші ата — «жеті атаның» шегі</span></li>
+      <li data-gen="9"><span class="n">Байтемір</span> <span class="d">кітап бойынша, Шабағандағы мешітті оның ұрпақтары ұстаған</span></li>
+      <li data-gen="10"><span class="n">Ағым</span></li>
+      <li data-gen="11"><span class="n">Сүйір</span></li>
+      <li data-gen="12"><span class="n">Амантай</span></li>
+      <li data-gen="13"><span class="n">Құламан</span></li>
+      <li data-gen="14"><span class="n">Ақпан</span></li>
+      <li data-gen="15"><span class="n">Қараш</span> <span class="d">Қарамашақтың төрт ұлының бірі — «Төрт Қара»</span></li>
+      <li data-gen="16"><span class="n">Қарамашақ</span> <span class="d">Төртқара руы тараған төрт ұлдың әкесі</span></li>
+      <li data-gen="17"><span class="n">Әлімұлы</span> <span class="d">Кіші жүздегі рулар бірлестігі</span></li>
+      <li data-gen="18"><span class="n">Қайырбай-Қарақесек</span></li>
+      <li data-gen="19"><span class="n">Кіші жүз</span> <span class="d">Кіші жүз</span></li>
+      <li data-gen="20"><span class="n">Алаш</span> <span class="d">барша қазақтың түп атасы</span></li>
+    </ol>
+    <p class="shz-src">Шежіре: Әлімұлы · Кіші жүз · shejire.ai, 2026</p>
+  </div>
+</section>
+<script src="js/three.min.js" defer></script>
+<script src="js/shezhire.js" defer></script>
+
 <!-- ============ ROOTS ============ -->
 <section class="wide block" id="roots">
   <div class="rv">
-    <p class="label">Шежіре</p>
-    <h2 class="sec-title">Тамыр</h2>
+    <p class="label">Отбасы</p>
+    <h2 class="sec-title">Жақын туыстар</h2>
     <p class="sec-lead">Әліби атаның әулеті ғасырлар бойы Ырғыз жағасында, ата-бабаларының киелі зираттары жатқан Шабағанда өмір сүрген. Өз әулеті туралы ол былай баяндайды.</p>
   </div>
 
