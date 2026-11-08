@@ -137,6 +137,8 @@ section.block{padding-block:clamp(64px,9vw,110px) 0}
 .shz-label b{font-family:var(--display);font-size:20px;font-weight:600}
 .shz-label.jeti b{color:#F1D480}
 .shz-label.shz-hero b{font-size:26px;color:#FFE7A6}
+.shz-label.shz-twig b{font-size:17px}
+@media (max-width:700px){.shz-label.shz-twig b{font-size:13px}.shz-label.shz-twig i{display:none}}
 .shz-label.on b{font-size:26px}
 .shz-head{position:absolute;left:0;right:0;top:0;padding:86px var(--gut) 0;max-width:1100px;margin:0 auto;pointer-events:none;z-index:1}
 .shz-stick::after{content:"";position:absolute;left:0;right:0;top:0;height:330px;background:linear-gradient(#0b1116 35%,rgba(11,17,22,0));pointer-events:none}
@@ -486,9 +488,9 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
     <canvas id="shz-canvas" aria-hidden="true"></canvas>
     <div class="shz-labels" id="shz-labels" aria-hidden="true"></div>
     <div class="shz-head">
-      <p class="label">Шежіре · 20 ұрпақ</p>
-      <h2 id="shz-title">Әсеттен Алашқа дейін</h2>
-      <p>Әлімұлы руының жиырма ұрпағы. Төмен айналдырып, Әліби атаның немересінен ең түпкі тамырға дейін түсіңіз. Алтын түспен «жеті ата» — ең жақын жеті атасы белгіленген.</p>
+      <p class="label">Шежіре · 21 ұрпақ</p>
+      <h2 id="shz-title">Шөберелерден Алашқа дейін</h2>
+      <p>Әлімұлы руының жиырма бір ұрпағы. Жоғарыда — Әліби атаның ұрпақтары; төмен айналдырып, ең түпкі тамырға, Алашқа дейін түсіңіз. Алтын түспен «жеті ата» белгіленген.</p>
     </div>
     <svg class="shz-tamga" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="M32 10v40M22 20h20M14 36c2 10 9 16 18 16s16-6 18-16"/><circle cx="32" cy="8" r="3" fill="currentColor"/></svg>
     <div class="shz-rail" aria-hidden="true"><span id="shz-bar"></span><em class="a">Бүгін</em><em class="b">Алаш</em></div>
@@ -521,6 +523,19 @@ footer .end{margin-top:36px;text-align:center;font-family:var(--display);font-st
       <li data-gen="2"><span class="n">Кіші жүз</span> <span class="d">Кіші жүз</span></li>
       <li data-gen="1"><span class="n">Алаш</span> <span class="d">барша қазақтың түп атасы</span></li>
     </ol>
+    <ul class="shz-list" id="shz-branch" aria-label="Әліби атаның ұрпақтары">
+      <li data-parent="Әліби" data-gen="19"><span class="n">Асқар</span> <span class="d">Әліби атаның үлкен ұлы</span></li>
+      <li data-parent="Асқар" data-gen="20"><span class="n">Тимур</span> <span class="d">Асқардың ұлы</span></li>
+      <li data-parent="Тимур" data-gen="21"><span class="n">Санжар</span> <span class="d">Тимурдың ұлы</span></li>
+      <li data-parent="Тимур" data-gen="21"><span class="n">Арыстан</span> <span class="d">Тимурдың ұлы</span></li>
+      <li data-parent="Қайрат" data-gen="20"><span class="n">Арсен</span> <span class="d">Қайраттың кенже ұлы</span></li>
+      <li data-parent="Әсет" data-gen="21"><span class="n">Дамир</span> <span class="d">Әсеттің үлкен ұлы</span></li>
+      <li data-parent="Әсет" data-gen="21"><span class="n">Сұлтан</span> <span class="d">Әсеттің ортаншы ұлы</span></li>
+      <li data-parent="Әсет" data-gen="21"><span class="n">Батыр</span> <span class="d">Әсеттің кенже ұлы</span></li>
+      <li data-parent="Арсен" data-gen="21"><span class="n">Дани</span> <span class="d">Арсеннің үлкен ұлы</span></li>
+      <li data-parent="Арсен" data-gen="21"><span class="n">Бари</span> <span class="d">Арсеннің кенже ұлы</span></li>
+    </ul>
+    <div id="shz-crown" hidden><span class="nm">Әліби атаның ұрпақтары</span><span class="nt">Екі ұл, үш немере және жеті шөбере — әулеттің жалғасы.</span></div>
     <p class="shz-src">Шежіре: Әлімұлы · Кіші жүз · shejire.ai, 2026</p>
   </div>
 </section>

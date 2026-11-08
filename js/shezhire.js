@@ -1,4 +1,5 @@
-/* Shezhire: 20 generations as a glowing 3D helix (three.js r128).
+/* Shezhire: 20 generations as a glowing 3D helix (three.js r128), with the
+   descendants of Alibi-ata as a gold "crown" above the main line.
    Data comes from the <ol id="shz-list"> markup so both languages share this file.
    Scrolling through the section moves the camera from the youngest generation
    down to the root (Alash). Falls back to the plain list without WebGL. */
@@ -16,6 +17,12 @@
       hero: li.dataset.hero === '1'
     };
   });
+  // descendants of Alibi-ata ("crown" above the main line)
+  var branch = [].slice.call(document.querySelectorAll('#shz-branch li')).map(function (li) {
+    return { name: li.querySelector('.n').textContent, parent: li.dataset.parent, gen: +li.dataset.gen,
+             note: (li.querySelector('.d') || {}).textContent || '' };
+  });
+  var crownInfo = document.getElementById('shz-crown');
   var canvas = document.getElementById('shz-canvas');
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var gl = null;
@@ -82,6 +89,42 @@
     return m;
   });
 
+  var labelBox = document.getElementById('shz-labels');
+  // --- crown: sons, grandsons and great-grandsons of Alibi-ata
+  var byName = {};
+  items.forEach(function (it, i) { byName[it.name] = { p: pts[i], ang: i * TURN, lvl: i }; });
+  // angle for each branch node, chosen so the crown fans out around the helix
+  var ANG = { 'Асқар': TURN + 2.6, 'Тимур': TURN + 2.1, 'Арсен': 2 * TURN,
+              'Дамир': -0.62, 'Сұлтан': 0, 'Батыр': 0.62, 'Дани': 2 * TURN - 0.36, 'Бари': 2 * TURN + 0.36,
+              'Санжар': TURN + 1.72, 'Арыстан': TURN + 2.5 };
+  var bNodes = [], bLabels = [], bLevels = [];
+  var LEVEL = { 19: 1, 20: 0, 21: -1 };           // helix index level (y = -level*STEP)
+  branch.forEach(function (b, k) {
+    var lvl = LEVEL[b.gen], ang = ANG[b.name] != null ? ANG[b.name] : k;
+    var rad = b.gen === 21 ? R * 1.4 : R;
+    var lift = b.gen === 21 ? (k % 2 ? 0.45 : -0.15) : 0;      // stagger the top row so labels don't collide
+    var p3 = new T.Vector3(Math.cos(ang) * rad, -lvl * STEP + lift, Math.sin(ang) * rad);
+    byName[b.name] = { p: p3, ang: ang, lvl: lvl };
+    var size = b.gen === 21 ? 0.11 : 0.14;
+    var m = new T.Mesh(new T.SphereGeometry(size, 20, 14), new T.MeshBasicMaterial({ color: GOLD }));
+    m.position.copy(p3);
+    var halo = new T.Sprite(new T.SpriteMaterial({ map: texGold, transparent: true, depthWrite: false, blending: T.AdditiveBlending, opacity: 0.5 }));
+    halo.scale.setScalar(size * 6); m.add(halo);
+    scene.add(m); bNodes.push(m); bLevels.push(lvl);
+    var d = document.createElement('div');
+    d.className = 'shz-label jeti shz-twig';
+    d.innerHTML = '<i>' + b.gen + '</i><b></b>'; d.querySelector('b').textContent = b.name;
+    labelBox.appendChild(d); bLabels.push(d);
+  });
+  // gold arcs from each parent to its child
+  branch.forEach(function (b) {
+    var P = byName[b.parent], C = byName[b.name]; if (!P || !C) return;
+    var mid = P.p.clone().add(C.p).multiplyScalar(0.5); mid.y += STEP * 0.35;
+    var arc = new T.QuadraticBezierCurve3(P.p.clone(), mid, C.p.clone());
+    scene.add(new T.Mesh(new T.TubeGeometry(arc, 40, 0.022, 6, false),
+      new T.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.5 })));
+  });
+
   // jeti ata boundary disc (between gen 8 and 9)
   var jetiIdx = items.reduce(function (k, it, i) { return it.jeti ? i : k; }, 0);
   var disc = new T.Mesh(new T.RingGeometry(R + 0.6, R + 0.64, 96), new T.MeshBasicMaterial({ color: GOLD, transparent: true, opacity: 0.35, side: T.DoubleSide }));
@@ -98,7 +141,6 @@
   scene.add(stars);
 
   // HTML labels
-  var labelBox = document.getElementById('shz-labels');
   var labels = items.map(function (it) {
     var d = document.createElement('div');
     d.className = 'shz-label' + (it.jeti ? ' jeti' : '') + (it.hero ? ' shz-hero' : '');
@@ -111,9 +153,17 @@
   // info card + counter
   var card = document.getElementById('shz-card'), cGen = card.querySelector('.g'), cName = card.querySelector('.nm'),
       cYears = card.querySelector('.y'), cNote = card.querySelector('.nt'), bar = document.getElementById('shz-bar');
-  var current = -1;
+  var current = -99;
   function setCard(i) {
     if (i === current) return; current = i;
+    if (i < 0) {                                   // crown view
+      cGen.textContent = '18–21';
+      cName.textContent = crownInfo.querySelector('.nm').textContent;
+      cNote.textContent = crownInfo.querySelector('.nt').textContent; cNote.hidden = false;
+      cYears.hidden = true; card.classList.remove('jeti');
+      card.classList.remove('flip'); void card.offsetWidth; card.classList.add('flip');
+      return;
+    }
     var it = items[i];
     cGen.textContent = it.gen;
     cName.textContent = it.name;
@@ -147,14 +197,22 @@
   function frame() {
     var t = clock.getElapsedTime();
     smooth += (prog - smooth) * (reduce ? 1 : 0.08);
-    var f = smooth * (items.length - 1);            // fractional generation index
+    var F0 = -1.3, f = F0 + smooth * (items.length - 1 - F0);   // fractional helix index (negative = crown)
     var y = -f * STEP;
     var ang = f * TURN + (reduce ? 0 : t * 0.05);
-    var dist = W < 700 ? 15.5 : 12.5;
+    var dist = (W < 700 ? 15.5 : 12.5) + Math.max(0, 1.2 - f) * (W < 700 ? 3 : 2.2);
     camera.position.set(Math.cos(ang) * dist, y + 2.4, Math.sin(ang) * dist);
     camera.lookAt(W < 700 ? 0 : -1.2, y - 0.8, 0);
 
-    var near = Math.round(f);
+    var near = f < -0.55 ? -1 : Math.max(0, Math.round(f));
+    bNodes.forEach(function (m, k) {
+      var d = Math.abs(bLevels[k] - f);
+      m.scale.setScalar(1 + (reduce ? 0 : Math.sin(t * 2.2 + k) * 0.06));
+      tmp.copy(m.position).project(camera);
+      var L = bLabels[k], vis = tmp.z < 1 && d < 3.2;
+      L.style.opacity = vis ? String(Math.max(0, 1 - d / 3.2)) : '0';
+      L.style.transform = 'translate(' + ((tmp.x * 0.5 + 0.5) * W).toFixed(1) + 'px,' + ((-tmp.y * 0.5 + 0.5) * H).toFixed(1) + 'px)';
+    });
     nodes.forEach(function (m, i) {
       var d = Math.abs(i - f), s = 1 + Math.max(0, 1 - d) * 0.45 + (reduce ? 0 : Math.sin(t * 2 + i) * 0.04);
       m.scale.setScalar(s);
@@ -185,6 +243,6 @@
     var li = e.target.closest('li'); if (!li) return;
     var i = items.findIndex(function (it) { return it.gen === +li.dataset.gen; });
     var span = sec.offsetHeight - window.innerHeight;
-    window.scrollTo({ top: sec.offsetTop + span * i / (items.length - 1), behavior: reduce ? 'auto' : 'smooth' });
+    window.scrollTo({ top: sec.offsetTop + span * (i + 1.3) / (items.length - 1 + 1.3), behavior: reduce ? 'auto' : 'smooth' });
   });
 })();
